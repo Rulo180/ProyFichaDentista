@@ -12,7 +12,7 @@ class Paciente extends AppModel {
  *
  * @var string
  */
-	//public $primaryKey = 'id_paciente';
+	public $primaryKey = 'id_paciente';
     
         public $virtualFields = array('Nombre_Completo' => "CONCAT(Paciente.apellido_paciente, ' ', Paciente.nombre_paciente)"
 );

@@ -118,7 +118,7 @@ class PacientesController extends AppController {
 
                 if ($this->Paciente->delete($id)) {
                     $this->Session->setFlash(
-                    __('El paciente '.$this->Paciente->field(nombre_paciente). $this->Paciente->field(apellido_paciente).' ha sido borrado.', h($id))
+                    __('El paciente '.$this->Paciente->field('nombre_paciente'). $this->Paciente->field('apellido_paciente').' ha sido borrado.', h($id))
                 );
                 return $this->redirect(array('action' => 'index'));
                 }

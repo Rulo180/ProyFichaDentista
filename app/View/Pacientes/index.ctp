@@ -15,7 +15,7 @@
     
     <?php foreach($pacientes as $paciente): ?>
         <tr>
-            <td><?php echo $paciente['Paciente']['id']; ?></td>
+            <td><?php echo $paciente['Paciente']['id_paciente']; ?></td>
             <td><?php echo $paciente['Paciente']['nombre_paciente']; ?></td>
             <td><?php echo $paciente['Paciente']['apellido_paciente']; ?></td>
             <td><?php echo $paciente['Paciente']['fecha_nac']; ?></td>
@@ -24,8 +24,8 @@
             <td><?php echo $paciente['Paciente']['domicilio']; ?></td>
             <td><?php echo $paciente['Paciente']['localidad']; ?></td>
             <td>
-                <?php echo $this->Html->link('Editar', array('action'=>'edit',$paciente['Paciente']['id'])); ?>
-                <?php echo $this->Form->postLink('Borrar', array('action'=>'delete',$paciente['Paciente']['id']), array('confirm' => 'Esta seguro?')); ?>
+                <?php echo $this->Html->link('Editar', array('action'=>'edit',$paciente['Paciente']['id_paciente'])); ?>
+                <?php echo $this->Form->postLink('Borrar', array('action'=>'delete',$paciente['Paciente']['id_paciente']), array('confirm' => 'Esta seguro?')); ?>
             </td>
         </tr>
     <?php endforeach; ?>
