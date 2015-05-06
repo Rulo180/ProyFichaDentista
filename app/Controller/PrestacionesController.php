@@ -3,11 +3,11 @@ App::uses('AppController', 'Controller');
 /**
  * Pacientes Controller
  *
- * @property Paciente $Paciente
+ * @property Prestacion $Prestacion
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class PacientesController extends AppController {
+class PrestacionesController extends AppController {
         
         var $helpers = array('Html', 'Form', 'Session');
 /**
@@ -23,8 +23,8 @@ class PacientesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Paciente->recursive = 0;
-		$this->set('pacientes', $this->Paginator->paginate());
+		$this->Prestacion->recursive = 0;
+		$this->set('prestaciones', $this->Paginator->paginate());
 	}
 
 /**
@@ -35,11 +35,11 @@ class PacientesController extends AppController {
  * @return void
  */
 	public function view($id) {
-		if (!$this->Paciente->exists($id)) {
-			throw new NotFoundException(__('Paciente inválido'));
+		if (!$this->Prestacion->exists($id)) {
+			throw new NotFoundException(__('Prestación inválida'));
 		}
-		$options = array('conditions' => array('Paciente.' . $this->Paciente->primaryKey => $id));
-		$this->set('paciente', $this->Paciente->find('first', $options));
+		$options = array('conditions' => array('Prestacion.' . $this->Prestacion->primaryKey => $id));
+		$this->set('prestacion', $this->Prestacion->find('first', $options));
                 
                 /*Segun Tut de Blog
                 public function view($id = null) {
@@ -64,12 +64,12 @@ class PacientesController extends AppController {
 	public function add() {
             
                 if ($this->request->is('post')) {
-                    $this->Paciente->create();
-                if ($this->Paciente->save($this->request->data)) {
-                    $this->Session->setFlash(__('El paciente ha sido guardado.'));
+                    $this->Prestacion->create();
+                if ($this->Prestacion->save($this->request->data)) {
+                    $this->Session->setFlash(__('La prestacion ha sido guardada.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('El paciente no ha sido guardado. Intente nuevamente.'));
+                $this->Session->setFlash(__('La prestacion no ha sido guardada. Intente nuevamente.'));
                 }
     }
 /**
@@ -85,22 +85,22 @@ class PacientesController extends AppController {
                 throw new NotFoundException(__('Id inválido.'));
             }
             
-            $paciente = $this->Paciente->findByIdPaciente($id);
-            if (!$paciente) {
-                throw new NotFoundException(__('Paciente inválido.'));
+            $prestacion = $this->Prestacion->findById($id);
+            if (!$prestacion) {
+                throw new NotFoundException(__('Prestacion inválida.'));
             }
 
             if ($this->request->is(array('post', 'put'))) {
-                $this->Paciente->id = $id;
-                if ($this->Paciente->save($this->request->data)) {
-                    $this->Session->setFlash(__('El paciente ha sido actualizado.'));
+                $this->Prestacion->id = $id;
+                if ($this->Prestacion->save($this->request->data)) {
+                    $this->Session->setFlash(__('La prestación ha sido actualizado.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('El paciente no ha sido guardado. Intente nuevamente.'));
+                $this->Session->setFlash(__('La prestación no ha sido guardado. Intente nuevamente.'));
         }
 
             if (!$this->request->data) {
-                $this->request->data = $paciente;
+                $this->request->data = $prestacion;
             }
 
  }
@@ -116,9 +116,9 @@ class PacientesController extends AppController {
                     throw new MethodNotAllowedException();
                 }
 
-                if ($this->Paciente->delete($id)) {
+                if ($this->Prestacion->delete($id)) {
                     $this->Session->setFlash(
-                    __('El paciente '.$this->Paciente->field('nombre_paciente'). $this->Paciente->field('apellido_paciente').' ha sido borrado.', h($id))
+                    __('La prestación '.$this->Prestacion->field('nombre_prestacion').' ha sido borrada.', h($id))
                 );
                 return $this->redirect(array('action' => 'index'));
                 }

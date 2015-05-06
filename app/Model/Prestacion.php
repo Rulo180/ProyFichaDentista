@@ -12,7 +12,7 @@ class Prestacion extends AppModel {
  *
  * @var string
  */
-	//public $primaryKey = 'id_prestacion';
+	public $primaryKey = 'id_prestacion';
 
 /**
  * Display field
