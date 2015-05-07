@@ -7,7 +7,7 @@ App::uses('AppController', 'Controller');
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class PrestacionesController extends AppController {
+class PrestacionsController extends AppController {
         
         var $helpers = array('Html', 'Form', 'Session');
 /**
@@ -23,8 +23,10 @@ class PrestacionesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Prestacion->recursive = 0;
-		$this->set('prestaciones', $this->Paginator->paginate());
+		//$this->Prestacione->recursive = 0;
+		//$this->set('prestaciones', $this->Paginator->paginate());
+                $this->loadModel('Prestacion');
+                $this->set('prestaciones', $this->Prestacion->find('all'));
 	}
 
 /**
@@ -85,7 +87,7 @@ class PrestacionesController extends AppController {
                 throw new NotFoundException(__('Id inválido.'));
             }
             
-            $prestacion = $this->Prestacion->findById($id);
+            $prestacion = $this->Prestacion->findByIdPrestacion($id);
             if (!$prestacion) {
                 throw new NotFoundException(__('Prestacion inválida.'));
             }

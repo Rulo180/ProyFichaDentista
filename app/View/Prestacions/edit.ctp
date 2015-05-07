@@ -1,6 +1,5 @@
-<?php
-    echo $this->Form->create('Prestacion', array('action' => 'edit'));
-?>
+<?php echo $this->Form->create('Prestacion', array('action' => 'edit'));?>
+
 <fieldset>
     <legend>Editar Prestacion:</legend>
         <?php
