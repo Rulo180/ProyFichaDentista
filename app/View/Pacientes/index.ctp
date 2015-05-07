@@ -4,6 +4,7 @@
     <tr>
         <th>ID</th>
         <th>Apellido y Nombre</th>
+        <th>Afiliado</th>
         <th>Fecha de Nac</th>
         <th>Profesión</th>
         <th>Teléfono</th>
@@ -16,6 +17,7 @@
         <tr>
             <td><?php echo $paciente['Paciente']['id_paciente']; ?></td>
             <td><?php echo $paciente['Paciente']['Nombre_Completo']; ?></td>
+            <td><?php echo $paciente['Paciente']['nro_afiliado']; ?></td>
             <td><?php echo $paciente['Paciente']['fecha_nac']; ?></td>
             <td><?php echo $paciente['Paciente']['profesion']; ?></td>
             <td><?php echo $paciente['Paciente']['telefono']; ?></td>

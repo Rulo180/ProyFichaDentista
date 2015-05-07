@@ -4,6 +4,7 @@
     <tr>
         <th>ID</th>
         <th>Nombre</th>
+        <th>Código</th>
         <th>Descripcion</th>
         <th>Acciones</th>
     </tr>
@@ -12,6 +13,7 @@
         <tr>
             <td><?php echo $prestacion['Prestacion']['id_prestacion']; ?></td>
             <td><?php echo $prestacion['Prestacion']['nombre_prestacion']; ?></td>
+            <td><?php echo $prestacion['Prestacion']['codigo_prestacion']; ?></td>
             <td><?php echo $prestacion['Prestacion']['descripcion_prestacion']; ?></td>
             <td>
                 <?php echo $this->Html->link('Editar', array('action'=>'edit',$prestacion['Prestacion']['id_prestacion'])); ?>

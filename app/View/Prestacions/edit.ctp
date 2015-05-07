@@ -4,6 +4,7 @@
     <legend>Editar Prestacion:</legend>
         <?php
         echo $this->Form->input('nombre_prestacion', array('label' => 'Nombre:'));
+        echo $this->Form->input('codigo_prestacion', array('label' => 'Código:'));
         echo $this->Form->input('descripcion_prestacion', array('label' => 'Descripcion:'));
         ?>
 </fieldset>
