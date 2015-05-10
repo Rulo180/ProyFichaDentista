@@ -1,13 +1,13 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * Pacientes Controller
+ * Turnos Controller
  *
- * @property Paciente $Paciente
+ * @property Turno $Turno
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class PacientesController extends AppController {
+class TurnosController extends AppController {
         
         var $helpers = array('Html', 'Form', 'Session');
 /**
@@ -23,10 +23,10 @@ class PacientesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Paciente->recursive = 0;
-		$this->set('pacientes', $this->Paginator->paginate());
+		$this->Turno->recursive = 0;
+		$this->set('turnos', $this->Paginator->paginate());
                 //$this->layout = 'atmosphere';
-                $this->set('title', 'Pacientes');
+                $this->set('title', 'Turnos');
 	}
 
 /**
@@ -37,11 +37,11 @@ class PacientesController extends AppController {
  * @return void
  */
 	public function view($id) {
-		if (!$this->Paciente->exists($id)) {
-			throw new NotFoundException(__('Paciente inválido'));
+		if (!$this->Turno->exists($id)) {
+			throw new NotFoundException(__('Turno inválido'));
 		}
-		$options = array('conditions' => array('Paciente.' . $this->Paciente->primaryKey => $id));
-		$this->set('paciente', $this->Paciente->find('first', $options));
+		$options = array('conditions' => array('Turno.' . $this->Turno->primaryKey => $id));
+		$this->set('turno', $this->Turno->find('first', $options));
                 
                 /*Segun Tut de Blog
                 public function view($id = null) {
@@ -66,12 +66,12 @@ class PacientesController extends AppController {
 	public function add() {
             
                 if ($this->request->is('post')) {
-                    $this->Paciente->create();
-                if ($this->Paciente->save($this->request->data)) {
-                    $this->Session->setFlash(__('El paciente ha sido guardado.'));
+                    $this->Turno->create();
+                if ($this->Turno->save($this->request->data)) {
+                    $this->Session->setFlash(__('El turno ha sido guardado.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('El paciente no ha sido guardado. Intente nuevamente.'));
+                $this->Session->setFlash(__('El turno no ha sido guardado. Intente nuevamente.'));
                 }
     }
 /**
@@ -87,22 +87,22 @@ class PacientesController extends AppController {
                 throw new NotFoundException(__('Id inválido.'));
             }
             
-            $paciente = $this->Paciente->findByIdPaciente($id);
-            if (!$paciente) {
-                throw new NotFoundException(__('Paciente inválido.'));
+            $turno = $this->Turno->findByIdTurno($id);
+            if (!$turno) {
+                throw new NotFoundException(__('Turno inválido.'));
             }
 
             if ($this->request->is(array('post', 'put'))) {
-                $this->Paciente->id = $id;
-                if ($this->Paciente->save($this->request->data)) {
-                    $this->Session->setFlash(__('El paciente ha sido actualizado.'));
+                $this->Turno->id = $id;
+                if ($this->Turno->save($this->request->data)) {
+                    $this->Session->setFlash(__('El turno ha sido actualizado.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('El paciente no ha sido guardado. Intente nuevamente.'));
+                $this->Session->setFlash(__('El turno no ha sido guardado. Intente nuevamente.'));
         }
 
             if (!$this->request->data) {
-                $this->request->data = $paciente;
+                $this->request->data = $turno;
             }
 
  }
@@ -118,11 +118,12 @@ class PacientesController extends AppController {
                     throw new MethodNotAllowedException();
                 }
 
-                if ($this->Paciente->delete($id)) {
+                if ($this->Turno->delete($id)) {
                     $this->Session->setFlash(
-                    __('El paciente '.$this->Paciente->field('nombre_paciente'). $this->Paciente->field('apellido_paciente').' ha sido borrado.', h($id))
+                    __('El turno '.$this->Turno->field('fecha_turno'). $this->Turno->field('hora_turno').' ha sido borrado.', h($id))
                 );
                 return $this->redirect(array('action' => 'index'));
                 }
 	}
 }
+
