@@ -26,9 +26,18 @@ class Turno extends AppModel {
  *
  * @var string
  */
-	//public $displayField = 'Nombre_Completo';
-        //Deberia crear un campo virtual que una el dia y la fecha
+	public $displayField = 'fecha_hora';
 
+ /**
+  * Asociaciones
+  * 
+  */
+        public $belongsTo = array(
+            'Paciente' => array(
+            'className' => 'Paciente',
+            'foreignKey' => 'paciente_id')
+            );
+        
 /**
  * Validation rules
  *

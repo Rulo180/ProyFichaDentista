@@ -6,6 +6,7 @@
         <th>Fecha</th>
         <th>Hora</th>
         <th>Paciente</th>
+        <th>Observacion</th>
         <th>Acciones</th>
     </tr>
     
@@ -15,6 +16,7 @@
             <td><?php echo $turno['Turno']['fecha_turno']; ?></td>
             <td><?php echo $turno['Turno']['hora_turno']; ?></td>
             <td><?php echo $turno['Turno']['paciente_id']; ?></td>
+            <td><?php echo $turno['Turno']['observacion_turno']; ?></td>
             <td>
                 <?php echo $this->Html->link('Editar', array('action'=>'edit',$turno['Turno']['id_turno'])); ?>
                 <?php echo $this->Form->postLink('Borrar', array('action'=>'delete',$turno['Turno']['id_turno']), array('confirm' => 'Esta seguro?')); ?>

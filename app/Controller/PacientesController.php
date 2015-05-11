@@ -26,7 +26,7 @@ class PacientesController extends AppController {
 		$this->Paciente->recursive = 0;
 		$this->set('pacientes', $this->Paginator->paginate());
                 //$this->layout = 'atmosphere';
-                $this->set('title', 'Pacientes');
+
 	}
 
 /**

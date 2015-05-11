@@ -30,11 +30,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="#">Inicio</a></li>
 				<li><a href="/ProyFichaDentista/Pacientes">Pacientes</a></li>
 				<li><a href="/ProyFichaDentista/Prestacions">Prestaciones</a></li>
-				<li><a href="#">Turnos</a></li>
-				<li><a href="#">Fichas</a></li>
+				<li><a href="/ProyFichaDentista/Turnos">Turnos</a></li>
+                                <li><a href="/ProyFichaDentista/ObraSocials">Obras Sociales</a></li>
 			</ul>
 		</div>
                 </div>

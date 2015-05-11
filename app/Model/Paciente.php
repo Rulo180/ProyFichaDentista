@@ -24,6 +24,17 @@ class Paciente extends AppModel {
  */
 	public $displayField = 'Nombre_Completo';
 
+        
+  /**
+  * Asociaciones
+  * 
+  */    
+        public $hasMany = array(
+        'Turno' => array(
+            'className' => 'Turno',
+            'foreignKey' => 'paciente_id',
+            'dependent' => true)
+            );
 /**
  * Validation rules
  *
