@@ -32,5 +32,10 @@
     <?php unset($paciente); ?>
 </table>
       <?php 
-        echo $this->Html->link('Agregar Paciente', array('controller' => 'Pacientes', 'action'=>'add', ))
-        //echo $this->Html->link('Volver', array('controller' => 'cursos', 'action'=>'index', ));?>
+        echo $this->Html->link('Agregar Paciente', array('controller' => 'Pacientes', 'action'=>'add'));
+        
+        //echo $this->Form->create(false);
+        echo $this->Form->input("Busqueda");
+        //echo $this->Form->end('Buscar', array('controller' => 'Pacientes', 'action'=>'buscar'));
+
+        echo $this->Html->link('Buscar Paciente', array('controller' => 'Pacientes', 'action'=>'buscar', "Valles"));?>

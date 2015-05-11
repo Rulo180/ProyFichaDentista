@@ -125,4 +125,19 @@ class PacientesController extends AppController {
                 return $this->redirect(array('action' => 'index'));
                 }
 	}
+        
+        public function buscar($id = null){
+            
+            $pacientes = $this->Paciente->findByApellidoPaciente($id);
+            if(!$pacientes){
+                $this->Session->setFlash(__('No se ha encontrado el paciente '. $id . "."));
+                return $this->redirect(array('action' => 'index'));
+            }/*else{
+                $this->set('pacientes', $pacientes);
+            }*/
+            else{
+                $options = array('conditions' => array('Paciente.' . 'apellido_paciente' => $id));
+                $this->set('pacientes', $this->Paciente->find('first', $options));
+            }
+        }
 }

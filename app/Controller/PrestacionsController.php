@@ -23,10 +23,8 @@ class PrestacionsController extends AppController {
  * @return void
  */
 	public function index() {
-		//$this->Prestacione->recursive = 0;
-		//$this->set('prestaciones', $this->Paginator->paginate());
-                $this->loadModel('Prestacion');
-                $this->set('prestaciones', $this->Prestacion->find('all'));
+		$this->Prestacion->recursive = 0;
+		$this->set('prestaciones', $this->Paginator->paginate());
 	}
 
 /**
