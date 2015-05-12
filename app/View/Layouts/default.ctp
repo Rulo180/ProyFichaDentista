@@ -41,8 +41,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 <div id="content">
                    
 			<?php echo $this->Session->flash(); ?>
-                    
-                        <div id="column">div column</div>
                         
 			<?php echo $this->fetch('content'); ?>
 		</div>

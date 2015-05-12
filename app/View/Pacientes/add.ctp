@@ -14,5 +14,5 @@
         echo $this->Form->input('localidad', array('label' => 'Localidad:'));
     ?>
 </fieldset>
-
-<?php echo $this->Form->end('Guardar'); ?>
+    <?php echo $this->Form->button('Reiniciar', array('type' => 'reset'));?>
+    <?php echo $this->Form->end('Guardar'); ?>

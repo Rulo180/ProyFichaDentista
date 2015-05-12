@@ -137,7 +137,7 @@ class PacientesController extends AppController {
             }*/
             else{
                 $options = array('conditions' => array('Paciente.' . 'apellido_paciente' => $id));
-                $this->set('pacientes', $this->Paciente->find('first', $options));
+                $this->set('pacientes', $this->Paciente->find('all', $options));
             }
         }
 }

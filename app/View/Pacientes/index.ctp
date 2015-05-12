@@ -1,4 +1,23 @@
-<h1><b>Lista de Pacientes</b></h1>
+<?php
+$this->extend('/Common/index');
+
+
+
+$this->start('column');?>
+    <ul>    
+        <li>
+        <?php //echo $this->Form->create(false);?>
+        <?php echo $this->Form->input("Busqueda Paciente:");?>
+        <?php //echo $this->Form->end('Buscar', array('controller' => 'Pacientes', 'action'=>'buscar'));?>
+        </li>
+        <li><?php echo $this->Html->link('Buscar', array('controller' => 'Pacientes', 'action'=>'buscar', "Valles"));?></li>
+
+        <li><?php echo $this->Html->link('Agregar Paciente', array('controller' => 'Pacientes', 'action'=>'add'));?></li>
+        
+    </ul> 
+<?php $this->end(); ?>
+
+<?php $this->assign('title', 'Lista de Pacientes'); ?>
 
 <table>
     <tr>
@@ -31,11 +50,4 @@
     <?php endforeach; ?>
     <?php unset($paciente); ?>
 </table>
-      <?php 
-        echo $this->Html->link('Agregar Paciente', array('controller' => 'Pacientes', 'action'=>'add'));
         
-        //echo $this->Form->create(false);
-        echo $this->Form->input("Busqueda");
-        //echo $this->Form->end('Buscar', array('controller' => 'Pacientes', 'action'=>'buscar'));
-
-        echo $this->Html->link('Buscar Paciente', array('controller' => 'Pacientes', 'action'=>'buscar', "Valles"));?>
