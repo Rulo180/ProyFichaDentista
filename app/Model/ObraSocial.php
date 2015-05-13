@@ -33,7 +33,16 @@ class ObraSocial extends AppModel {
   * Asociaciones
   * 
   */    
-        
+        public $hasMany = array(
+        'Paciente' => array(
+            'className' => 'Paciente',
+            'foreignKey' => 'obra_social_id',
+            //'conditions' => array('Comment.status' => '1'),
+            'order' => 'Paciente.nombre_paciente DESC',
+            //'limit' => '5',
+            'dependent' => false
+            )
+        );
 /**
  * Validation rules
  *

@@ -22,7 +22,7 @@ class PacientesController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function index() {            
 		$this->Paciente->recursive = 0;
 		$this->set('pacientes', $this->Paginator->paginate());
                 //$this->layout = 'atmosphere';
@@ -65,6 +65,11 @@ class PacientesController extends AppController {
  */
 	public function add() {
             
+                $this->set('obras', $this->Paciente->ObraSocial->find('list'));
+            
+                //$this->loadModel('ObraSocial');
+                //$this->set('obras', $this->ObraSocial->find('all', array('fields' => array('ObraSocial.id_obra', 'ObraSocial.nombre_obra'))));
+                
                 if ($this->request->is('post')) {
                     $this->Paciente->create();
                 if ($this->Paciente->save($this->request->data)) {
@@ -82,6 +87,8 @@ class PacientesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+            
+            $this->set('obras', $this->Paciente->ObraSocial->find('list'));
             
             if (!$id) {
                 throw new NotFoundException(__('Id inválido.'));
@@ -128,16 +135,19 @@ class PacientesController extends AppController {
         
         public function buscar($id = null){
             
-            $pacientes = $this->Paciente->findByApellidoPaciente($id);
-            if(!$pacientes){
-                $this->Session->setFlash(__('No se ha encontrado el paciente '. $id . "."));
-                return $this->redirect(array('action' => 'index'));
-            }/*else{
-                $this->set('pacientes', $pacientes);
-            }*/
-            else{
-                $options = array('conditions' => array('Paciente.' . 'apellido_paciente' => $id));
-                $this->set('pacientes', $this->Paciente->find('all', $options));
+            if ($this->request->is('post')) {
+                
+                $pacientes = $this->Paciente->findByApellidoPaciente($id);
+                if(!$pacientes){
+                    $this->Session->setFlash(__('No se ha encontrado el paciente '. $id . "."));
+                    return $this->redirect(array('action' => 'index'));
+                }/*else{
+                    $this->set('pacientes', $pacientes);
+                }*/
+                else{
+                    $options = array('conditions' => array('Paciente.' . 'apellido_paciente' => $id));
+                    $this->set('pacientes', $this->Paciente->find('all', $options));
+                }
             }
         }
 }

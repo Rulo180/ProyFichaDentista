@@ -65,8 +65,10 @@ class TurnosController extends AppController {
  */
 	public function add() {
                 
-                $this->loadModel('Paciente');
-                $this->set('pacientes', $this->Paciente->find('all', array('fields' => array('Paciente.id_paciente', 'Paciente.Nombre_Completo'))));
+                $this->set('pacientes', $this->Turno->Paciente->find('list'));
+            
+                //$this->loadModel('Paciente');
+                //$this->set('pacientes', $this->Paciente->find('all', array('fields' => array('Paciente.id_paciente', 'Paciente.Nombre_Completo'))));
                 
                 if ($this->request->is('post')) {
                     $this->Turno->create();
@@ -85,6 +87,8 @@ class TurnosController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+            
+            $this->set('pacientes', $this->Turno->Paciente->find('list'));
             
             if (!$id) {
                 throw new NotFoundException(__('Id inválido.'));
@@ -128,5 +132,20 @@ class TurnosController extends AppController {
                 return $this->redirect(array('action' => 'index'));
                 }
 	}
+        
+        public function filtrarDia($dia = null){
+            
+            $turnos_dia = $this->Turno->findByFechaTurno($dia);
+            if(!$turnos_dia){
+                $this->Session->setFlash(__('No se ha encontrado turnos para el día.'));
+                return $this->redirect(array('action' => 'index'));
+            }/*else{
+                $this->set('pacientes', $pacientes);
+            }*/
+            else{
+                $options = array('conditions' => array('Turno.' . 'fecha_turno' => $dia));
+                $this->set('turnos', $this->Turno->find('all', $options));
+            }
+        }
 }
 

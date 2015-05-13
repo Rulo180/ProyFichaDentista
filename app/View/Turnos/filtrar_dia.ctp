@@ -1,18 +1,4 @@
-<?php
-$this->extend('/Common/index');
-
-$this->start('column');?>
-    <ul>    
-        <li>
-        <?php echo $this->Html->link('Turnos para Hoy', array('controller' => 'Turnos', 'action'=>'filtrarDia', date('D-M-Y'))) ;?>
-        </li>
-        <li><?php echo $this->Html->link('Agregar Turno', array('controller' => 'Turnos', 'action'=>'add', ))?></li>
-        
-    </ul> 
-<?php $this->end(); ?>
-
-<?php $this->assign('title', 'Lista de Turnos'); ?>
-
+<h1><b>Resultados de Busqueda:</b></h1>
 
 <table>
     <tr>
@@ -39,5 +25,3 @@ $this->start('column');?>
     <?php endforeach; ?>
     <?php unset($turno); ?>
 </table>
-      
-      

@@ -11,4 +11,5 @@
     ?>
 </fieldset>
 
+<?php echo $this->Form->button('Reiniciar', array('type' => 'reset'));?>
 <?php echo $this->Form->end('Guardar'); ?>

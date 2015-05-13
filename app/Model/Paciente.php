@@ -35,6 +35,13 @@ class Paciente extends AppModel {
             'foreignKey' => 'paciente_id',
             'dependent' => true)
             );
+        
+        public $belongsTo = array(
+        'ObraSocial' => array(
+            'className' => 'ObraSocial',
+            'foreignKey' => 'obra_social_id'
+        )
+    );
 /**
  * Validation rules
  *
