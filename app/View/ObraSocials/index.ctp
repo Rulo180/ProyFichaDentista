@@ -1,14 +1,25 @@
-<h1><b>Lista de Obras Sociales</b></h1>
+<?php $this->extend('/Common/index'); ?>
+
+<?php $this->start('column') ;?>
+    <ul>    
+        <li><?php echo $this->Html->link('Buscar', array('controller' => 'Pacientes', 'action'=>'buscar', "Valles"));?></li>
+
+        <li><?php echo $this->Html->link('Agregar Obra Social', array('controller' => 'ObraSocials', 'action'=>'add', )) ?></li>
+        
+    </ul> 
+<?php $this->end(); ?>
+
+<?php $this->assign('title', 'Lista de Obras Sociales'); ?>
 
 <table>
     <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Código</th>
-        <th>Teléfono</th>
-        <th>Dirección</th>
-        <th>Email</th>
-        <th>C.U.I.T.</th>
+        <th><?php echo $this->Paginator->sort('id_obra', 'ID');?></th>
+        <th><?php echo $this->Paginator->sort('nombre_obra', 'Nombre');?></th>
+        <th><?php echo $this->Paginator->sort('codigo_obra', 'Código');?></th>
+        <th><?php echo $this->Paginator->sort('telefono_obra', 'Teléfono');?></th>
+        <th><?php echo $this->Paginator->sort('direccion_obra', 'Dirección');?></th>
+        <th><?php echo $this->Paginator->sort('email_obra', 'Email');?></th>
+        <th><?php echo $this->Paginator->sort('CUIT_obra', 'C.U.I.T.');?></th>
         <th>Acciones</th>
     </tr>
     
@@ -22,13 +33,33 @@
             <td><?php echo $obra['ObraSocial']['email_obra']; ?></td>
             <td><?php echo $obra['ObraSocial']['CUIT_obra']; ?></td>
             <td>
-                <?php echo $this->Html->link('Editar', array('action'=>'edit',$obra['ObraSocial']['id_obra'])); ?>
+                <?php echo $this->Html->link('Editar', array('action'=>'edit',$obra['ObraSocial']['id_obra'])); ?>/
                 <?php echo $this->Form->postLink('Borrar', array('action'=>'delete',$obra['ObraSocial']['id_obra']), array('confirm' => 'Esta seguro?')); ?>
             </td>
         </tr>
     <?php endforeach; ?>
     <?php unset($obra); ?>
 </table>
-      <?php 
-        echo $this->Html->link('Agregar Obra Social', array('controller' => 'ObraSocials', 'action'=>'add', ))
-        //echo $this->Html->link('Volver', array('controller' => 'cursos', 'action'=>'index', ));?>
+
+    <?php $this->start('paginate'); ?>
+    <?php  
+        // Shows the page numbers
+        echo $this->Paginator->numbers(array('first' => 2, 'last' => 2));
+
+        // Shows the next and previous links
+        echo $this->Paginator->prev(
+        '« Previous',
+        null,
+        null,
+        array('class' => 'disabled'));
+        echo $this->Paginator->next(
+        'Next »',
+        null,
+        null,
+        array('class' => 'disabled'));
+
+        // prints X of Y, where X is current page and Y is number of pages
+        echo $this->Paginator->counter('{:page} de {:pages}'); 
+    ?>
+
+     <?php $this->end(); ?>
