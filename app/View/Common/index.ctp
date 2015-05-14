@@ -11,5 +11,9 @@
     <?php echo $this->fetch('content'); ?>
 </div>
 
+<div id="paginate">
+    <?php echo $this->fetch('paginate'); ?>
+</div>
+
 
 
