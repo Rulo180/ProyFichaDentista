@@ -17,12 +17,20 @@ class PacientesController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
         
+        public $paginate = array(
+        'limit' => 10,
+        'order' => array('Paciente.apellido_paciente' => 'asc', 'Paciente.nombre_paciente' => 'asc')
+            );
+        
 /**
  * index method
  *
  * @return void
  */
-	public function index() {            
+	public function index() {  
+            
+                $this->Paginator->settings = $this->paginate;
+                
 		$this->Paciente->recursive = 0;
 		$this->set('pacientes', $this->Paginator->paginate());
                 //$this->layout = 'atmosphere';
@@ -135,8 +143,10 @@ class PacientesController extends AppController {
         
         public function buscar($id = null){
             
-            if ($this->request->is('post')) {
-                
+            $this->Paginator->settings = $this->paginate;
+          
+            if ($this->request->is('get')) {
+               
                 $pacientes = $this->Paciente->findByApellidoPaciente($id);
                 if(!$pacientes){
                     $this->Session->setFlash(__('No se ha encontrado el paciente '. $id . "."));

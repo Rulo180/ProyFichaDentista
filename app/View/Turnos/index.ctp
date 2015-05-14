@@ -3,9 +3,14 @@ $this->extend('/Common/index');
 
 $this->start('column');?>
     <ul>    
-        <li>
-        <?php echo $this->Html->link('Turnos para Hoy', array('controller' => 'Turnos', 'action'=>'filtrarDia', date('D-M-Y'))) ;?>
-        </li>
+        <li><?php 
+            /*$this->Form->create(false);
+            $options = array('D' => 'Día', 'M' => 'Mes', 'A' => 'Año');
+            $attributes = array('value' => 'D', 'name' => 'filtro');
+            echo $this->Form->radio('filtro', $options, $attributes);
+            echo $this->Form->end('Filtrar', array('action'=>'add', 'D'));*/
+            echo $this->Html->link('Turnos para Hoy', array('controller' => 'Turnos', 'action'=>'filtrarDia', '2015-05-15'));
+         ?></li>
         <li><?php echo $this->Html->link('Agregar Turno', array('controller' => 'Turnos', 'action'=>'add', ))?></li>
         
     </ul> 

@@ -6,8 +6,8 @@ $this->extend('/Common/index');
 $this->start('column');?>
     <ul>    
         <li>
-        <?php echo $this->Form->create(false, array('name' => 'buscar'))  ?>
-        <?php echo $this->Form->input("busqueda", array('label' => 'Paciente:', 'value' => 'hola'));?>
+        <?php echo $this->Form->create('Paciente')  ?>
+        <?php echo $this->Form->input("busqueda", array('label' => 'Paciente:'));?>
         <?php echo $this->Form->end('Buscar', array('controller' => 'Pacientes', 'action'=>'buscar'));?>
         </li>
         <li><?php echo $this->Html->link('Buscar', array('controller' => 'Pacientes', 'action'=>'buscar', "Valles"));?></li>

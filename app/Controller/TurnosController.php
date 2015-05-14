@@ -17,12 +17,20 @@ class TurnosController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
         
+        public $paginate = array(
+        'limit' => 10,
+        'order' => array('Turno.fecha_turno' => 'desc')
+            );
+        
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
+            
+                $this->Paginator->settings = $this->paginate;
+            
 		$this->Turno->recursive = 0;
 		$this->set('turnos', $this->Paginator->paginate());
                 //$this->layout = 'atmosphere';
@@ -134,18 +142,31 @@ class TurnosController extends AppController {
 	}
         
         public function filtrarDia($dia = null){
+            /*
+            $filtro = $this->request->data('filtro');
             
-            $turnos_dia = $this->Turno->findByFechaTurno($dia);
-            if(!$turnos_dia){
-                $this->Session->setFlash(__('No se ha encontrado turnos para el día.'));
-                return $this->redirect(array('action' => 'index'));
-            }/*else{
-                $this->set('pacientes', $pacientes);
+            if ($this->request->is('post')) {
+                if($filtro == 'D'){
+                    $turnos = $this->Turno->findByFechaTurno(date('D'));
+                }
+                if(!$turnos){
+                    $this->Session->setFlash(__('No se ha encontrado turnos para el día.'));
+                    return $this->redirect(array('action' => 'index'));
+                }
+                else{
+                $this->set('turnos',$turnos);
+                }
             }*/
-            else{
-                $options = array('conditions' => array('Turno.' . 'fecha_turno' => $dia));
-                $this->set('turnos', $this->Turno->find('all', $options));
-            }
+                $turnos_dia = $this->Turno->findByFechaTurno($dia);
+                if(!$turnos_dia){
+                    $this->Session->setFlash(__('No se ha encontrado turnos para el día.'));
+                    return $this->redirect(array('action' => 'index'));
+                }
+                else{
+                    $options = array('conditions' => array('Turno.' . 'fecha_turno' => $dia));
+                    $this->set('turnos', $this->Turno->find('all', $options));
+                }
+                
         }
 }
 

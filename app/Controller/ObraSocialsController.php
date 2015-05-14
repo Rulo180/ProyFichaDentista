@@ -17,17 +17,22 @@ class ObraSocialsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
         
+        public $paginate = array(
+        'limit' => 10,
+        'order' => array('ObraSocial.nombre_obra' => 'asc')
+            );
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
-		//$this->ObraSocial->recursive = 0;
-		//$this->set('obras', $this->Paginator->paginate());
-                $this->loadModel('ObraSocial');
-                $this->set('obras', $this->ObraSocial->find('all'));
-                $this->set('title', 'Obras Sociales');
+            
+                $this->Paginator->settings = $this->paginate;
+            
+		$this->ObraSocial->recursive = 0;
+		$this->set('obras', $this->Paginator->paginate());
+                
 	}
 
 /**

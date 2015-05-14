@@ -17,14 +17,23 @@ class PrestacionsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
         
+        public $paginate = array(
+        'limit' => 10,
+        'order' => array('Prestacion.nombre_prestacion' => 'asc')
+            );
+        
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
+            
+                $this->Paginator->settings = $this->paginate;
+            
 		$this->Prestacion->recursive = 0;
 		$this->set('prestaciones', $this->Paginator->paginate());
+                
 	}
 
 /**
