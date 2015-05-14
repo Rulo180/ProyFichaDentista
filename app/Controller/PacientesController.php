@@ -18,7 +18,7 @@ class PacientesController extends AppController {
 	public $components = array('Paginator', 'Session');
         
         public $paginate = array(
-        'limit' => 5,
+        'limit' => 10,
         'order' => array('Paciente.apellido_paciente' => 'asc', 'Paciente.nombre_paciente' => 'asc')
             );
         
