@@ -9,7 +9,7 @@ App::uses('AppController', 'Controller');
  */
 class TurnosController extends AppController {
         
-        var $helpers = array('Html', 'Form', 'Session');
+        var $helpers = array('Html', 'Form', 'Session', 'Time');
 /**
  * Components
  *
@@ -142,29 +142,62 @@ class TurnosController extends AppController {
 	}
         
         public function filtrarDia($dia = null){
-            /*
-            $filtro = $this->request->data('filtro');
             
-            if ($this->request->is('post')) {
-                if($filtro == 'D'){
-                    $turnos = $this->Turno->findByFechaTurno(date('D'));
-                }
-                if(!$turnos){
-                    $this->Session->setFlash(__('No se ha encontrado turnos para el día.'));
-                    return $this->redirect(array('action' => 'index'));
-                }
-                else{
-                $this->set('turnos',$turnos);
-                }
-            }*/
                 $turnos_dia = $this->Turno->findByFechaTurno($dia);
                 if(!$turnos_dia){
-                    $this->Session->setFlash(__('No se ha encontrado turnos para el día.'));
+                    $this->Session->setFlash(__('No se ha encontrado turnos para el día '.$dia . '.'));
                     return $this->redirect(array('action' => 'index'));
                 }
                 else{
                     $options = array('conditions' => array('Turno.' . 'fecha_turno' => $dia));
                     $this->set('turnos', $this->Turno->find('all', $options));
+                }
+                
+        }
+        
+        public function filtrarSem($sem = null){
+                
+                $options = array('conditions' => array('EXTRACT(WEEK FROM '. 'Turno.' . 'fecha_turno' .')' => $sem - 1));
+                $turnos_sem = $this->Turno->find('all', $options);
+                
+                if(!$turnos_sem){
+                    $this->Session->setFlash(__('No se ha encontrado turnos para la semana '.$sem . '.'));
+                    return $this->redirect(array('action' => 'index'));
+                }
+                else{
+                    $this->set('turnos', $turnos_sem);
+                }
+                
+        }
+        
+        public function filtrarMes($mes = null){
+                
+                $options = array('conditions' => array('EXTRACT(MONTH FROM '. 'Turno.' . 'fecha_turno' .')' => $mes));
+                $turnos_mes = $this->Turno->find('all', $options);
+                
+                if(!$turnos_mes){
+                    $this->Session->setFlash(__('No se ha encontrado turnos para el mes '.$mes . '.'));
+                    return $this->redirect(array('action' => 'index'));
+                }
+                else{
+                    $this->set('turnos', $turnos_mes);
+                }
+                
+        }
+        
+        
+        public function filtrarAnio($año = null){
+                
+                $options = array('conditions' => array('EXTRACT(YEAR FROM '. 'Turno.' . 'fecha_turno' .')' => $año),
+                                 'order' => array('EXTRACT(MONTH FROM '. 'Turno.' . 'fecha_turno'.')'));
+                $turnos_año = $this->Turno->find('all', $options);
+                
+                if(!$turnos_año){
+                    $this->Session->setFlash(__('No se ha encontrado turnos para el año '.$año . '.'));
+                    return $this->redirect(array('action' => 'index'));
+                }
+                else{
+                    $this->set('turnos', $turnos_año);
                 }
                 
         }

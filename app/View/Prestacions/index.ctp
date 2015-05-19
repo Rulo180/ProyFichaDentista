@@ -1,6 +1,7 @@
 <?php $this->extend('/Common/index'); ?>
 
 <?php $this->start('column') ;?>
+    <?php $this->assign('tit_col', 'Opciones:'); ?>
     <ul>    
         <li><?php echo $this->Html->link('Buscar', array('controller' => 'Pacientes', 'action'=>'buscar', "Valles"));?></li>
 

@@ -1,15 +1,30 @@
 <?php $this->extend('/Common/index');?>
 
 <?php $this->start('column');?>
+    <?php $this->assign('tit_col', 'Filtrar:'); ?>
     <ul>    
         <li><?php 
-            /*$this->Form->create(false);
-            $options = array('D' => 'Día', 'M' => 'Mes', 'A' => 'Año');
-            $attributes = array('value' => 'D', 'name' => 'filtro');
-            echo $this->Form->radio('filtro', $options, $attributes);
-            echo $this->Form->end('Filtrar', array('action'=>'add', 'D'));*/
-            echo $this->Html->link('Turnos para Hoy', array('controller' => 'Turnos', 'action'=>'filtrarDia', '2015-05-15'));
-         ?></li>
+            $dia = date('Y-m-d');
+            echo $this->Html->link('Hoy', array('controller' => 'Turnos', 'action'=>'filtrarDia', $dia));
+            ?>
+        </li>
+        <li><?php 
+            $sem = date('W');
+            echo $this->Html->link('Semana', array('controller' => 'Turnos', 'action'=>'filtrarSem', $sem));
+            ?>
+        </li>
+        <li>
+            <?php
+            $mes = date('m');
+            echo $this->Html->link('Mes', array('controller' => 'Turnos', 'action'=>'filtrarMes', $mes));
+            ?>
+        </li>
+        <li>
+            <?php
+            $año = date('Y');
+            echo $this->Html->link('Año', array('controller' => 'Turnos', 'action'=>'filtrarAnio', $año));
+            ?>
+        </li>
         <li><?php echo $this->Html->link('Agregar Turno', array('controller' => 'Turnos', 'action'=>'add', ))?></li>
         
     </ul> 

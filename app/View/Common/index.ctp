@@ -1,6 +1,6 @@
 <!-- app/View/Common/index.ctp-->
 <div id="column">
-    <h3>Opciones:</h3>
+    <h3><?php echo $this->fetch('tit_col'); ?></h3>
     <ul>
     <?php echo $this->fetch('column'); ?>
     </ul>
