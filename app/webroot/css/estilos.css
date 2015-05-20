@@ -19,12 +19,23 @@ a {
 
                         /* --------  ESTILOS -------- */
 
-.container {
-	width: 1000px;
-	margin: 0px auto;
-}
+
 
                         /* -------- CAPAS -------- */
+
+#container {
+	width: 100%;
+        height: auto;
+	margin: 0px auto;
+}
+                        
+/* Frame */
+
+#frame {
+    width: 100%;
+    height: 100%;
+    margin: 0px auto;
+}
 
 /* Content */
 
@@ -34,7 +45,7 @@ a {
 	color: #333;
 	padding: 20px 100px 40px 50px;
 	overflow: auto;
-        min-height: 450px;
+        min-height: 300px;
         width: 80%;
 }
 

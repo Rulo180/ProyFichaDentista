@@ -141,23 +141,27 @@ class PacientesController extends AppController {
                 }
 	}
         
-        public function buscar($id = null){
+        public function buscar(){
             
-            $this->Paginator->settings = $this->paginate;
-          
-            if ($this->request->is('get')) {
-               
-                $pacientes = $this->Paciente->findByApellidoPaciente($id);
-                if(!$pacientes){
-                    $this->Session->setFlash(__('No se ha encontrado el paciente '. $id . "."));
-                    return $this->redirect(array('action' => 'index'));
-                }/*else{
-                    $this->set('pacientes', $pacientes);
-                }*/
-                else{
-                    $options = array('conditions' => array('Paciente.' . 'apellido_paciente' => $id));
-                    $this->set('pacientes', $this->Paciente->find('all', $options));
-                }
+            $campo = $this->request->data('Buscar.campo');
+            $filtro = $this->request->data('Buscar.filtro');
+            
+            if ($filtro == '1'){
+ 
+                $options = array('conditions' => array( 'Paciente.' . 'Nombre_Completo '. 'LIKE' => "%$campo%"));                                      
+            }else if ($filtro == '2'){
+                
+                $options = array('conditions' => array( 'Paciente.' . 'nro_afiliado '. 'LIKE'  => "%$campo%"));
             }
+            
+            $pacientes =  $this->Paciente->find('all', $options);
+            
+            if(!$pacientes){
+                $this->Session->setFlash(__('No se ha encontrado el paciente '. $campo . "."));
+                return $this->redirect(array('action' => 'index'));
+            }else{
+                $this->set('pacientes', $pacientes);
+            }
+               
         }
 }

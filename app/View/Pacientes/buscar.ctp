@@ -1,4 +1,4 @@
-<h1><b>Resultados de Busqueda:</b></h1>
+<h1><b>Resultados de Busqueda: <i><?php echo $this->request->data('Buscar.campo');?></i></b></h1>
 
 <table>
     <tr>

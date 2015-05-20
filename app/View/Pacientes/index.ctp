@@ -5,12 +5,13 @@
     <?php $this->assign('tit_col', 'Opciones:'); ?>
     <ul>    
         <li>
-        <?php echo $this->Form->create('Paciente')  ?>
-        <?php echo $this->Form->input("busqueda", array('label' => 'Paciente:'));?>
-        <?php echo $this->Form->end('Buscar', array('controller' => 'Pacientes', 'action'=>'buscar'));?>
+        <?php echo $this->Form->create('Paciente', array('action'=>'buscar'))  ?>
+        <?php echo $this->Form->input("Buscar.campo", array('label' => 'Paciente:'));?>
+        <?php $options = array('1' => 'Nombre', '2' => 'Afiliado');?>
+        <?php $attributes = array('value' => '1', 'separator' => '<br>', 'beetwen' => '','legend' => false);?>
+        <?php echo $this->Form->radio('Buscar.filtro', $options, $attributes); ?>
+        <?php echo $this->Form->end('Buscar');?>
         </li>
-        <li><?php echo $this->Html->link('Buscar', array('controller' => 'Pacientes', 'action'=>'buscar', "Valles"));?></li>
-
         <li><?php echo $this->Html->link('Agregar Paciente', array('controller' => 'Pacientes', 'action'=>'add'));?></li>
         
     </ul> 
@@ -62,12 +63,12 @@
 
     // Shows the next and previous links
     echo $this->Paginator->prev(
-    '« Previous',
+    '« Anterior',
     null,
     null,
     array('class' => 'disabled'));
     echo $this->Paginator->next(
-    'Next »',
+    'Siguiente »',
     null,
     null,
     array('class' => 'disabled'));

@@ -43,12 +43,12 @@
 
     // Shows the next and previous links
     echo $this->Paginator->prev(
-    '« Previous',
+    '« Anterior',
     null,
     null,
     array('class' => 'disabled'));
     echo $this->Paginator->next(
-    'Next »',
+    'Siguiente »',
     null,
     null,
     array('class' => 'disabled'));

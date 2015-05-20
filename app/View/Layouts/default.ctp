@@ -24,8 +24,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header" class="container">
+	<div id="frame">
+		<div id="header">
 		<div id="logo">
 			<h1><a href="#">Atmosphere</a></h1>
                         
@@ -40,18 +40,20 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</div>
                 </div>
 	<!-- end #header -->
-                <div id="content">
-                   
-			<?php echo $this->Session->flash(); ?>
-                        
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			
-			<p>
-				<?php echo $cakeVersion; ?>
-			</p>
-		</div>
+                <div id ="container">       
+                    <div id="content">
+
+                            <?php echo $this->Session->flash(); ?>
+
+                            <?php echo $this->fetch('content'); ?>
+                    </div>
+                    <div id="footer">
+
+                            <p>
+                                    <?php echo $cakeVersion; ?>
+                            </p>
+                    </div>
+                </div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
