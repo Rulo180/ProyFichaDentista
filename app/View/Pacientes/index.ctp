@@ -6,10 +6,14 @@
     <ul>    
         <li>
         <?php echo $this->Form->create('Paciente', array('action'=>'buscar'))  ?>
-        <?php echo $this->Form->input("Buscar.campo", array('label' => 'Paciente:'));?>
+        <?php echo $this->Form->input("Buscar.campo", array('label' => false));?>
+        </li>
+        <li>
         <?php $options = array('1' => 'Nombre', '2' => 'Afiliado');?>
-        <?php $attributes = array('value' => '1', 'separator' => '<br>', 'beetwen' => '','legend' => false);?>
+        <?php $attributes = array('value' => '1', 'separator' => '<br>', 'beetwen' => '...','legend' => false);?>
         <?php echo $this->Form->radio('Buscar.filtro', $options, $attributes); ?>
+        </li>
+        <li>
         <?php echo $this->Form->end('Buscar');?>
         </li>
         <li><?php echo $this->Html->link('Agregar Paciente', array('controller' => 'Pacientes', 'action'=>'add'));?></li>

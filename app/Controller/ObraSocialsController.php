@@ -131,6 +131,25 @@ class ObraSocialsController extends AppController {
                 return $this->redirect(array('action' => 'index'));
                 }
 	}
+        
+        public function buscar(){
+            
+            $campo = $this->request->data('Buscar.campo');
+
+            $options = array('conditions' => array( "OR" => array('ObraSocial.' . 'nombre_obra'. ' LIKE' => "%$campo%", 
+                                                                  'Obrasocial.' . 'codigo_obra' => "$campo")));                                      
+                                                                  
+            
+            $obras =  $this->ObraSocial->find('all', $options);
+            
+            if(!$obras){
+                $this->Session->setFlash(__('No se ha encontrado la obra social '. $campo . "."));
+                return $this->redirect(array('action' => 'index'));
+            }else{
+                $this->set('obras', $obras);
+            }
+               
+        }
 }
 
 

@@ -3,28 +3,14 @@
 <?php $this->start('column');?>
     <?php $this->assign('tit_col', 'Filtrar:'); ?>
     <ul>    
-        <li><?php 
-            $dia = date('Y-m-d');
-            echo $this->Html->link('Hoy', array('controller' => 'Turnos', 'action'=>'filtrarDia', $dia));
-            ?>
+        <li><?php echo $this->Form->create('Turno', array('action'=>'buscar'));?>
+                <?php $options = array('1' => 'Hoy', '2' => 'Semana', '3' => 'Mes', '4' => 'Año', '5' => 'Desde-Hasta');?>
+                <?php $attributes = array('value' => '1', 'separator' => '</li><li>', 'beetwen' => '...','legend' => false);?>
+                <?php echo $this->Form->radio('Buscar.filtro', $options, $attributes); ?>
         </li>
-        <li><?php 
-            $sem = date('W');
-            echo $this->Html->link('Semana', array('controller' => 'Turnos', 'action'=>'filtrarSem', $sem));
-            ?>
-        </li>
-        <li>
-            <?php
-            $mes = date('m');
-            echo $this->Html->link('Mes', array('controller' => 'Turnos', 'action'=>'filtrarMes', $mes));
-            ?>
-        </li>
-        <li>
-            <?php
-            $año = date('Y');
-            echo $this->Html->link('Año', array('controller' => 'Turnos', 'action'=>'filtrarAnio', $año));
-            ?>
-        </li>
+                <li><?php echo $this->Form->input("Buscar.desde", array('label' => 'desde:', 'type' => 'date', 'dateFormat' => 'YMD', 'separator' => false)); ?></li>
+                <li><?php echo $this->Form->input("Buscar.hasta", array('label' => 'hasta:', 'type' => 'date', 'dateFormat' => 'YMD', 'separator' => false)); ?></li>
+                <li><?php echo $this->Form->end('Buscar'); ?></li>
         <li><?php echo $this->Html->link('Agregar Turno', array('controller' => 'Turnos', 'action'=>'add', ))?></li>
         
     </ul> 

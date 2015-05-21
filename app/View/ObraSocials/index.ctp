@@ -3,8 +3,13 @@
 <?php $this->start('column') ;?>
     <?php $this->assign('tit_col', 'Opciones:'); ?>
     <ul>    
-        <li><?php echo $this->Html->link('Buscar', array('controller' => 'Pacientes', 'action'=>'buscar', "Valles"));?></li>
-
+        <li>
+        <?php echo $this->Form->create('ObraSocial', array('action'=>'buscar'))  ?>
+        <?php echo $this->Form->input("Buscar.campo", array('label' => false));?>
+        </li>
+        <li>
+        <?php echo $this->Form->end('Buscar');?>
+        </li>
         <li><?php echo $this->Html->link('Agregar Obra Social', array('controller' => 'ObraSocials', 'action'=>'add', )) ?></li>
         
     </ul> 

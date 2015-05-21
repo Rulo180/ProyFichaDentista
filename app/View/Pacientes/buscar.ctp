@@ -10,6 +10,7 @@
         <th>Teléfono</th>
         <th>Domicilio</th>
         <th>Localidad</th>
+        <th>Obra Social</th>
         <th>Acciones</th>
     </tr>
     
@@ -23,6 +24,7 @@
             <td><?php echo $paciente['Paciente']['telefono']; ?></td>
             <td><?php echo $paciente['Paciente']['domicilio']; ?></td>
             <td><?php echo $paciente['Paciente']['localidad']; ?></td>
+            <td><?php echo $paciente['Paciente']['obra_social_id']; ?></td>
             <td>
                 <?php echo $this->Html->link('Editar', array('action'=>'edit',$paciente['Paciente']['id_paciente'])); ?>
                 <?php echo $this->Form->postLink('Borrar', array('action'=>'delete',$paciente['Paciente']['id_paciente']), array('confirm' => 'Esta seguro?')); ?>
@@ -32,5 +34,4 @@
     <?php unset($paciente); ?>
 </table>
       <?php 
-        //echo $this->Html->link('Agregar Paciente', array('controller' => 'Pacientes', 'action'=>'add', ))
-        echo $this->Html->link('Volver', array('controller' => 'Pacientes', 'action'=>'index', ));?>
+        echo $this->Html->link('Volver', array('controller' => 'Pacientes', 'action'=>'index' ));?>

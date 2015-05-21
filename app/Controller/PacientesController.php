@@ -151,7 +151,7 @@ class PacientesController extends AppController {
                 $options = array('conditions' => array( 'Paciente.' . 'Nombre_Completo '. 'LIKE' => "%$campo%"));                                      
             }else if ($filtro == '2'){
                 
-                $options = array('conditions' => array( 'Paciente.' . 'nro_afiliado '. 'LIKE'  => "%$campo%"));
+                $options = array('conditions' => array( 'Paciente.' . 'nro_afiliado '  => "$campo"));
             }
             
             $pacientes =  $this->Paciente->find('all', $options);

@@ -8,7 +8,7 @@
         echo $this->Form->input('codigo_obra', array('label' => 'Código:'));
         echo $this->Form->input('telefono_obra', array('label' => 'Teléfono:'));
         echo $this->Form->input('direccion_obra', array('label' => 'Dirección:'));
-        echo $this->Form->input('email_obra', array('label' => 'Email:'));
+        echo $this->Form->input('email_obra', array('label' => 'Email:', array('type' => 'email')));
         echo $this->Form->input('CUIT_obra', array('label' => 'C.U.I.T.:'));
     ?>
 </fieldset>

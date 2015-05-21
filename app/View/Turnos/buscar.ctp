@@ -1,4 +1,4 @@
-<h1><b>Resultados de Busqueda:</b></h1>
+<h1><b>Resultados de Busqueda: <i><?php echo $msj;?></i></b></h1>
 
 <table>
     <tr>
@@ -18,10 +18,12 @@
             <td><?php echo $turno['Turno']['paciente_id']; ?></td>
             <td><?php echo $turno['Turno']['observacion_turno']; ?></td>
             <td>
-                <?php echo $this->Html->link('Editar', array('action'=>'edit',$turno['Turno']['id_turno'])); ?>
+                <?php echo $this->Html->link('Editar', array('action'=>'edit',$turno['Turno']['id_turno'])); ?>/
                 <?php echo $this->Form->postLink('Borrar', array('action'=>'delete',$turno['Turno']['id_turno']), array('confirm' => 'Esta seguro?')); ?>
             </td>
         </tr>
     <?php endforeach; ?>
     <?php unset($turno); ?>
 </table>
+
+<?php echo $this->Html->link('Volver', array('controller' => 'Turnos', 'action'=>'index'));?>
