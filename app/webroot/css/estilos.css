@@ -52,7 +52,7 @@ a {
 /* Header */
 
 #header {
-	width: 900px;
+	width: auto;
 	height: 115px;
 	margin: 0 auto;
 	padding: 0px 50px;
@@ -131,7 +131,7 @@ a {
 
 #menu {
 	float: right;
-	width: 600px;
+	width: auto;
 	height: 90px;
 	margin: 0 auto;
 	padding: 0;

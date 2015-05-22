@@ -1,38 +1,51 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Prestacion Model
+ * Tratamiento Model
  *
  * @property  $
  */
-class Prestacion extends AppModel {
+class Tratamiento extends AppModel {
 
 /**
  * Primary key field
  *
  * @var string
  */
-	public $primaryKey = 'id_prestacion';
+	public $primaryKey = 'id_tratamiento';
+    
 
 /**
  * Display field
  *
  * @var string
  */
-	public $displayField = 'nombre_prestacion';
+	public $displayField = 'fecha_tratamiento';
+
         
-/**
- * Associations
- */
+  /**
+  * Asociaciones
+  * 
+  */            
+        public $belongsTo = array(
+        'ObraSocial' => array(
+            'className' => 'ObraSocial',
+            'foreignKey' => 'obra_id'
+        ),
+        'FichaDental' => array(
+            'className' => 'FichaDental',
+            'foreignKey' => 'ficha_id'
+        )
+    );
         
         public $hasAndBelongsToMany = array(
-        'Tratamiento' =>
+        'Prestacion' =>
             array(
-                'className' => 'Tratamiento',
+                'className' => 'Prestacion',
                 'joinTable' => 'prestacions_tratamientos',
-                'foreignKey' => 'prestacion_id',
-                'associationForeignKey' => 'tratamiento_id',
-                'unique' => true,
+                'foreignKey' => 'tratamiento_id',
+                'associationForeignKey' => 'prestacion_id',
+                'unique' => 'keepExisting',
                 'conditions' => '',
                 'fields' => '',
                 'order' => '',
@@ -42,23 +55,25 @@ class Prestacion extends AppModel {
                 'with' => ''
             )
     );
-        
 /**
  * Validation rules
  *
  * @var array
  */
 	public $validate = array(
-		'nombre_prestacion' => array(
+		'fecha_tratamiento' => array(
 			'rule' => 'notEmpty',
-			'message' => 'El campo nombre no puede quedar vacio',
+			'message' => 'El campo fecha no puede quedar vacio',
 			//'allowEmpty' => false,
 			'required' => true,
 			//'last' => false, // Stop validation after this rule
 			//'on' => 'create', // Limit validation to 'create' or 'update' operations
-		)    
+		)        
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 }
+
+
+

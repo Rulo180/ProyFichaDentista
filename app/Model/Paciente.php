@@ -39,7 +39,7 @@ class Paciente extends AppModel {
         public $belongsTo = array(
         'ObraSocial' => array(
             'className' => 'ObraSocial',
-            'foreignKey' => 'obra_social_id'
+            'foreignKey' => 'obra_id'
         )
     );
 /**
