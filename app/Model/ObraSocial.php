@@ -36,7 +36,7 @@ class ObraSocial extends AppModel {
         public $hasMany = array(
         'Paciente' => array(
             'className' => 'Paciente',
-            'foreignKey' => 'obra_social_id',
+            'foreignKey' => 'obra_id',
             //'conditions' => array('Comment.status' => '1'),
             'order' => 'Paciente.nombre_paciente DESC',
             //'limit' => '5',

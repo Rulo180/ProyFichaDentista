@@ -28,12 +28,7 @@
         <th><?php echo $this->Paginator->sort('id_paciente', 'ID');?></th>
         <th><?php echo $this->Paginator->sort('Nombre_Completo', 'Nombre Completo');?></th>
         <th><?php echo $this->Paginator->sort('nro_afiliado', 'Afiliado:');?></th>
-        <th><?php echo $this->Paginator->sort('fecha_nac', 'Fecha de Nac.:');?></th>
         <th><?php echo $this->Paginator->sort('dni_paciente', 'D.N.I.:');?></th>
-        <th><?php echo $this->Paginator->sort('profesion', 'Profesión:');?></th>
-        <th><?php echo $this->Paginator->sort('telefono', 'Teléfono:');?></th>
-        <th><?php echo $this->Paginator->sort('domicilio', 'Domicilio:');?></th>
-        <th><?php echo $this->Paginator->sort('localidad', 'Localidad:');?></th>
         <th><?php echo $this->Paginator->sort('ObraSocial.nombre_obra', 'Obra Social:');?></th>
         <th>Acciones</th>
     </tr>
@@ -41,14 +36,9 @@
     <?php foreach($pacientes as $paciente): ?>
         <tr>
             <td><?php echo $paciente['Paciente']['id_paciente']; ?></td>
-            <td><?php echo $paciente['Paciente']['Nombre_Completo']; ?></td>
+            <td><?php echo $this->Html->link($paciente['Paciente']['Nombre_Completo'], array('action'=>'view',$paciente['Paciente']['id_paciente'])); ?></td>
             <td><?php echo $paciente['Paciente']['nro_afiliado']; ?></td>
-            <td><?php echo $paciente['Paciente']['fecha_nac']; ?></td>
             <td><?php echo $paciente['Paciente']['dni_paciente']; ?></td>
-            <td><?php echo $paciente['Paciente']['profesion']; ?></td>
-            <td><?php echo $paciente['Paciente']['telefono']; ?></td>
-            <td><?php echo $paciente['Paciente']['domicilio']; ?></td>
-            <td><?php echo $paciente['Paciente']['localidad']; ?></td>
             <td><?php echo $paciente['Paciente']['obra_id']; ?></td>
             <td>
                 <?php echo $this->Html->link('Editar', array('action'=>'edit',$paciente['Paciente']['id_paciente'])); ?>/

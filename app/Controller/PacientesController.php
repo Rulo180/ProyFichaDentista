@@ -51,19 +51,6 @@ class PacientesController extends AppController {
 		$options = array('conditions' => array('Paciente.' . $this->Paciente->primaryKey => $id));
 		$this->set('paciente', $this->Paciente->find('first', $options));
                 
-                /*Segun Tut de Blog
-                public function view($id = null) {
-                if (!$id) {
-                    throw new NotFoundException(__('Invalid post'));
-                }
-
-                $escuela = $this->Escuela->findById($id);
-                if (!$escuela) {
-                    throw new NotFoundException(__('Invalid escuela.'));
-                }
-                $this->set('escuela', $escuela);
-                }*/
-                
         }
 
 /**

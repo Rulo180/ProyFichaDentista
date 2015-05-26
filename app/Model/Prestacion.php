@@ -36,7 +36,8 @@ class Prestacion extends AppModel {
 //        );
         
         public $hasAndBelongsToMany = array(
-        'Tratamiento' =>
+        'Tratamiento'
+        /*'Tratamiento' =>
             array(
                 'className' => 'Tratamiento',
                 'joinTable' => 'prestacion_tratamientos',
@@ -50,7 +51,7 @@ class Prestacion extends AppModel {
                 'offset' => '',
                 'finderQuery' => '',
                 'with' => ''
-            )
+            )*/
     );
         
 /**

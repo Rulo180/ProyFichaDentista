@@ -50,7 +50,8 @@ class Tratamiento extends AppModel {
 //        );
         
         public $hasAndBelongsToMany = array(
-        'Prestacion' => array(
+        'Prestacion'    
+        /*'Prestacion' => array(
             'className' => 'Prestacion',
             'joinTable' => 'prestacion_tratamientos',
             'foreignKey' => 'tratamiento_id',
@@ -63,7 +64,7 @@ class Tratamiento extends AppModel {
             'offset' => '',
             'finderQuery' => '',
             'with' => ''
-            )
+            )*/
     );
 /**
  * Validation rules
