@@ -24,15 +24,25 @@ class Prestacion extends AppModel {
 /**
  * Associations
  */
+//          public $hasMany = array(
+//            'PrestacionTratamiento' => array(
+//            'className' => 'PrestacionTratamiento',
+//            //'foreignKey' => 'prestacion_id',
+//            //'conditions' => array('Comment.status' => '1'),
+//            //'order' => 'Paciente.nombre_paciente DESC',
+//            //'limit' => '5',
+//            //'dependent' => false
+//            )
+//        );
         
         public $hasAndBelongsToMany = array(
         'Tratamiento' =>
             array(
                 'className' => 'Tratamiento',
-                'joinTable' => 'prestacions_tratamientos',
+                'joinTable' => 'prestacion_tratamientos',
                 'foreignKey' => 'prestacion_id',
                 'associationForeignKey' => 'tratamiento_id',
-                'unique' => true,
+                'unique' => false,
                 'conditions' => '',
                 'fields' => '',
                 'order' => '',

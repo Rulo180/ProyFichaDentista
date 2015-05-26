@@ -38,21 +38,31 @@ class Tratamiento extends AppModel {
         )
     );
         
+//        public $hasMany = array(
+//        'PrestacionTratamiento' => array(
+//            'className' => 'PrestacionTratamiento',
+//            //'foreignKey' => 'prestacion_id',
+//            //'conditions' => array('Comment.status' => '1'),
+//            //'order' => 'Paciente.nombre_paciente DESC',
+//            //'limit' => '5',
+//            //'dependent' => false
+//            )
+//        );
+        
         public $hasAndBelongsToMany = array(
-        'Prestacion' =>
-            array(
-                'className' => 'Prestacion',
-                'joinTable' => 'prestacions_tratamientos',
-                'foreignKey' => 'tratamiento_id',
-                'associationForeignKey' => 'prestacion_id',
-                'unique' => 'keepExisting',
-                'conditions' => '',
-                'fields' => '',
-                'order' => '',
-                'limit' => '',
-                'offset' => '',
-                'finderQuery' => '',
-                'with' => ''
+        'Prestacion' => array(
+            'className' => 'Prestacion',
+            'joinTable' => 'prestacion_tratamientos',
+            'foreignKey' => 'tratamiento_id',
+            'associationForeignKey' => 'prestacion_id',
+            'unique' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'finderQuery' => '',
+            'with' => ''
             )
     );
 /**

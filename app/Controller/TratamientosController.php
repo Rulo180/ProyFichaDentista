@@ -36,6 +36,7 @@ class TratamientosController extends AppController {
                 
 		$this->Tratamiento->recursive = 0;
 		$this->set('tratamientos', $this->Paginator->paginate());
+                $this->set('id_ficha', $id);
                 //$this->layout = 'atmosphere';
 
 	}
@@ -45,16 +46,20 @@ class TratamientosController extends AppController {
  *
  * @return void
  */
-	public function add() {
-            
+	public function add($id_ficha = null) {
+                
+//                $this->loadModel('Prestacion');
+//                $this->set('prestacions', $this->Prestacion->find('list'));
                 $this->set('prestacions', $this->Tratamiento->Prestacion->find('list'));
-                $this->set('fichas', $this->Tratamiento->FichaDental->find('list'));
+                $this->set('id_ficha', $id_ficha);
                 $this->set('obras', $this->Tratamiento->ObraSocial->find('list'));
+                $this->Session->setFlash(__('Este es el valor de id_ficha '. $id_ficha . '.'));
+                //$this->set('prest_trats', $this->Tratamiento->PrestacionTratamiento->find('all'));
                 
                 if ($this->request->is('post')) {
                     $this->Tratamiento->create();
                     $ficha = $this->Tratamiento->field('ficha_id');
-                if ($this->Tratamiento->saveAll($this->request->data, array('deep' => true))) {
+                if ($this->Tratamiento->saveAll($this->request->data)) {
                     $this->Session->setFlash(__('El tratamiento ha sido guardado.'));
                     return $this->redirect(array('action' => 'index', $ficha));
                 }
