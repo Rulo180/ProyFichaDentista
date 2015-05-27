@@ -33,5 +33,4 @@
     <?php endforeach; ?>
     <?php unset($paciente); ?>
 </table>
-      <?php 
-        echo $this->Html->link('Volver', array('controller' => 'Pacientes', 'action'=>'index' ));?>
+      <?php echo $this->Html->link('Volver', array('controller' => 'Pacientes', 'action'=>'index' ));?>

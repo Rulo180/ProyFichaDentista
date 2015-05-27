@@ -32,7 +32,7 @@
     <?php foreach($obras as $obra): ?>
         <tr>
             <td><?php echo $obra['ObraSocial']['id_obra']; ?></td>
-            <td><?php echo $obra['ObraSocial']['nombre_obra']; ?></td>
+            <td><?php echo $this->Html->link($obra['ObraSocial']['nombre_obra'], array('action' => 'verPacientes', $obra['ObraSocial']['id_obra'])); ?></td>
             <td><?php echo $obra['ObraSocial']['codigo_obra']; ?></td>
             <td><?php echo $obra['ObraSocial']['telefono_obra']; ?></td>
             <td><?php echo $obra['ObraSocial']['direccion_obra']; ?></td>

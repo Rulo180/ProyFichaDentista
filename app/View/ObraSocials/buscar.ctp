@@ -31,5 +31,4 @@
     <?php unset($obra); ?>
 </table>
     
-    <?php 
-        echo $this->Html->link('Volver', array('controller' => 'ObraSocials', 'action'=>'index' ));?>
+    <?php echo $this->Html->link('Volver', array('controller' => 'ObraSocials', 'action'=>'index' ));?>

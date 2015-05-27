@@ -47,20 +47,7 @@ class ObraSocialsController extends AppController {
 			throw new NotFoundException(__('Turno inválido'));
 		}
 		$options = array('conditions' => array('ObraSocial.' . $this->ObraSocial->primaryKey => $id));
-		$this->set('turno', $this->ObraSocial->find('first', $options));
-                
-                /*Segun Tut de Blog
-                public function view($id = null) {
-                if (!$id) {
-                    throw new NotFoundException(__('Invalid post'));
-                }
-
-                $escuela = $this->Escuela->findById($id);
-                if (!$escuela) {
-                    throw new NotFoundException(__('Invalid escuela.'));
-                }
-                $this->set('escuela', $escuela);
-                }*/
+		$this->set('turno', $this->ObraSocial->find('first', $options)); 
                 
         }
 
@@ -149,6 +136,22 @@ class ObraSocialsController extends AppController {
                 $this->set('obras', $obras);
             }
                
+        }
+        
+        public function verPacientes($id = null){
+            
+            $options = array('conditions' => array('Paciente.obra_id' => $id));
+            $this->loadModel('Paciente');
+            $pacientes = $this->Paciente->find('all', $options);
+            
+            $this->set('obra', $this->ObraSocial->find('first', array('conditions' => array('ObraSocial.id_obra' => $id))));
+            
+            if(!$pacientes){
+                $this->Session->setFlash('No se han encontrado pacientes para esta obra social.');
+                return $this->redirect(array('action' => 'index'));
+            }else{
+                $this->set('pacientes', $pacientes);
+            }
         }
 }
 
