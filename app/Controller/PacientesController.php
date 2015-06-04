@@ -139,7 +139,11 @@ class PacientesController extends AppController {
             }else if ($filtro == '2'){
                 
                 $options = array('conditions' => array( 'Paciente.' . 'nro_afiliado '  => "$campo"));
+            } else if ($filtro == '3'){
+                
+                $options = array('conditions' => array('Paciente.' . 'dni_paciente' => "$campo"));
             }
+           
             
             $pacientes =  $this->Paciente->find('all', $options);
             

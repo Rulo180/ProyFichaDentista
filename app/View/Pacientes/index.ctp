@@ -9,7 +9,7 @@
         <?php echo $this->Form->input("Buscar.campo", array('label' => false));?>
         </li>
         <li>
-        <?php $options = array('1' => 'Nombre', '2' => 'Afiliado');?>
+        <?php $options = array('1' => 'Nombre', '2' => 'Afiliado', '3' => 'D.N.I.');?>
         <?php $attributes = array('value' => '1', 'separator' => '<br>', 'beetwen' => '...','legend' => false);?>
         <?php echo $this->Form->radio('Buscar.filtro', $options, $attributes); ?>
         </li>

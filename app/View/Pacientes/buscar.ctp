@@ -6,6 +6,7 @@
         <th>Apellido y Nombre</th>
         <th>Afiliado</th>
         <th>Fecha de Nac</th>
+        <th>D.N.I.</th>
         <th>Profesión</th>
         <th>Teléfono</th>
         <th>Domicilio</th>
@@ -20,6 +21,7 @@
             <td><?php echo $paciente['Paciente']['Nombre_Completo']; ?></td>
             <td><?php echo $paciente['Paciente']['nro_afiliado']; ?></td>
             <td><?php echo $paciente['Paciente']['fecha_nac']; ?></td>
+            <td><?php echo $paciente['Paciente']['dni_paciente']; ?></td>
             <td><?php echo $paciente['Paciente']['profesion']; ?></td>
             <td><?php echo $paciente['Paciente']['telefono']; ?></td>
             <td><?php echo $paciente['Paciente']['domicilio']; ?></td>
