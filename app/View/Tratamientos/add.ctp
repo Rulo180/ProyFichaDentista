@@ -4,11 +4,24 @@
     <legend>Registrar Tratamiento:</legend>
     
     <?php
-        echo $this->Form->input('ficha_id',array('options' => array($id_ficha), 'type' => 'hidden'));
+        echo $this->Form->input('ficha_id', array('type' => 'hidden', 'value' => $id_ficha));
         echo $this->Form->input('fecha_tratamiento', array('dateFormat' => 'DMY', 'minYear' => date('Y') - 1, 'maxYear' => date('Y') + 1,'label' => 'Fecha:'));
-        echo $this->Form->input('obra_id', array('label' => 'Obra Social:', 'empty' => '(Seleccionar)'));
-        echo $this->Form->input('Prestacion', array('label' => 'Prestación:', 'empty' => '(Seleccionar)'));
     ?>
+    <table>
+        <tr>
+            <td>Obra Social:</td>
+            <td>Prestación: </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->Form->input('obra_id', array('label' => '', 'empty' => '(Seleccionar)')); ?> </td>
+            <td><?php echo $this->Form->input('Prestacion.prestacions', array('label' => '', 'empty' => '(Seleccionar)')); ?> </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->Form->input('obra_id', array('label' => '', 'empty' => '(Seleccionar)')); ?> </td>
+            <td><?php echo $this->Form->input('Prestacion.prestacions', array('label' => '', 'empty' => '(Seleccionar)')); ?> </td>
+        </tr>
+    </table>
+    
 </fieldset>
 
 <fieldset>

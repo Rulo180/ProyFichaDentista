@@ -100,7 +100,8 @@ class TratamientosController extends AppController {
                 $this->Tratamiento->id = $id;
                 if ($this->Tratamiento->saveAll($this->request->data, array('deep' => true))) {
                     $this->Session->setFlash(__('El tratamiento ha sido actualizado.'));
-                    return $this->redirect(array('action' => 'index'));
+                    $id_ficha = $this->Tratamiento->field('ficha_id');
+                    return $this->redirect(array('action' => 'index', $id_ficha));
                 }
                 $this->Session->setFlash(__('El tratamiento no ha sido guardado. Intente nuevamente.'));
         }
@@ -125,7 +126,8 @@ class TratamientosController extends AppController {
                     $this->Session->setFlash(
                     __('El tratamiento ha sido borrado.', h($id))
                 );
-                return $this->redirect(array('action' => 'index'));
+                    $id_ficha = $this->Tratamiento->field('ficha_id');
+                return $this->redirect(array('action' => 'index', $id_ficha));
                 }
 	}
         
@@ -146,7 +148,8 @@ class TratamientosController extends AppController {
             
             if(!$pacientes){
                 $this->Session->setFlash(__('No se ha encontrado el paciente '. $campo . "."));
-                return $this->redirect(array('action' => 'index'));
+                $id_ficha = $this->Tratamiento->field('ficha_id');
+                return $this->redirect(array('action' => 'index', $id_ficha));
             }else{
                 $this->set('pacientes', $pacientes);
             }

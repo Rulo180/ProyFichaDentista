@@ -28,7 +28,7 @@ class FichaDentalsController extends AppController {
  * @return void
  */
 	public function index() {  
-            
+                
                 $this->Paginator->settings = $this->paginate;
                 
 		$this->FichaDental->recursive = 0;
