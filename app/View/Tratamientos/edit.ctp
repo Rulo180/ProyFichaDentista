@@ -14,11 +14,11 @@
         </tr>
         <tr>
             <td><?php echo $this->Form->input('obra_id', array('label' => '', 'empty' => '(Seleccionar)')); ?> </td>
-            <td><?php echo $this->Form->input('prestacions', array('label' => '', 'empty' => '(Seleccionar)')); ?> </td>
+            <td><?php echo $this->Form->input('Prestacion.0', array('label' => '', 'empty' => '(Seleccionar)', 'options' => $prestacions)); ?> </td>
         </tr>
         <tr>
             <td><?php echo $this->Form->input('obra_id', array('label' => '', 'empty' => '(Seleccionar)')); ?> </td>
-            <td><?php echo $this->Form->input('02.Prestacion.prestacions', array('label' => '', 'empty' => '(Seleccionar)')); ?> </td>
+            <td><?php echo $this->Form->input('Prestacion.1', array('label' => '', 'empty' => '(Seleccionar)', 'options' => $prestacions)); ?> </td>
         </tr>
     </table>
 </fieldset>

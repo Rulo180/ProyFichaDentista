@@ -67,7 +67,7 @@ class TratamientosController extends AppController {
                 if ($this->request->is('post')) {
                     $this->Tratamiento->create();
                     $ficha = $this->Tratamiento->field('ficha_id');
-                if ($this->Tratamiento->saveAll($this->request->data, array('deep' => true))) {
+                if ($this->Tratamiento->save($this->request->data)) {
                     $this->Session->setFlash(__('El tratamiento ha sido guardado.'));
                     return $this->redirect(array('action' => 'index', $ficha));
                 }
