@@ -21,6 +21,8 @@
             <td><?php echo $this->Form->input('Prestacion.1', array('label' => '', 'empty' => '(Seleccionar)', 'options' => $prestacions)); ?> </td>
         </tr>
     </table>
+    
+    
 </fieldset>
 <?php
     echo $this->Form->end('Guardar');

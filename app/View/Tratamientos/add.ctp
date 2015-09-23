@@ -22,6 +22,15 @@
         </tr>
     </table>
     
+    <table id="mytable">
+	<tr><th></th><th>Prestación</th></tr>
+	<tr id="prestacion0" >
+		<td><?php echo $this->Form->button('&nbsp;-&nbsp;',array('type'=>'button')); ?></td>
+		<td><?php echo $this->Form->input('unused.Prestacion', array('label' => '', 'empty' => '(Seleccionar)', 'options' => $prestacions)); ?></td>
+	</tr>
+	<tr id="trAdd"><td> <?php echo $this->Form->button('+',array('type'=>'button','onclick'=>'addPrestacion()')); ?> </td><td></td></tr>
+    </table>
+    
 </fieldset>
 
 <fieldset>
@@ -38,3 +47,21 @@
 
 <?php echo $this->Form->button('Reiniciar', array('type' => 'reset'));?>
 <?php echo $this->Form->end('Guardar'); ?>
+
+
+<?php echo $this->Html->script(array('jquery-2.1.4'));?>
+<script type='text/javascript'>
+	var lastRow=0;
+	
+	function addPrestacion() {
+		lastRow++;
+		$("#mytable tbody>tr:#prestacion0").clone(true).attr('id','prestacion'+lastRow).removeAttr('style').insertBefore("#mytable tbody>tr:#trAdd");
+		$("#prestacion"+lastRow+" button").attr('onclick','removePerson('+lastRow+')');
+		$("#prestacion"+lastRow+" input:first").attr('name','[Prestacion]['+lastRow+']').attr('id','id_prestacion'+lastRow);
+                $("#prestacion"+lastRow+" select").attr('name','data[Prestacion]['+lastRow+']').attr('id','id_prestacion'+lastRow);
+	}
+	
+	function removePrestacion(x) {
+		$("#prestacion"+x).remove();
+	}
+</script>
