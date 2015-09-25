@@ -19,7 +19,7 @@ class FichaDentalsController extends AppController {
         
         public $paginate = array(
         'limit' => 5,
-        'order' => array('FichaDental.paciente_id' => 'asc')
+        'order' => array('FichaDental.fecha_ficha' => 'desc')
             );
         
 /**
@@ -33,7 +33,8 @@ class FichaDentalsController extends AppController {
                 
 		$this->FichaDental->recursive = 0;
 		$this->set('fichas', $this->Paginator->paginate());
-                //$this->layout = 'atmosphere';
+                $this->loadModel('Paciente');
+                $this->set('pacientes', $this->Paciente->find('all'));
 
 	}
 
@@ -126,13 +127,16 @@ class FichaDentalsController extends AppController {
                 $options = array('conditions' => array( 'Paciente.' . 'nro_afiliado '  => "$campo"));
             }
             
-            $pacientes =  $this->Paciente->find('all', $options);
+            $pacientes =  $this->FichaDental->Paciente->find('all', $options);
             
-            if(!$pacientes){
+            $options = array('conditions' => array('FichaDental.' . 'paciente_id' => $pacientes['FichaDental']['Paciente']['id_paciente']));
+            $fichas = $this->FichaDental->find('all', $options);
+            
+            if(!$fichas){
                 $this->Session->setFlash(__('No se ha encontrado el paciente '. $campo . "."));
                 return $this->redirect(array('action' => 'index'));
             }else{
-                $this->set('pacientes', $pacientes);
+                $this->set('fichas', $fichas);
             }
                
         }

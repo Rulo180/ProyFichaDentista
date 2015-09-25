@@ -21,7 +21,7 @@ class TratamientosController extends AppController {
         
         public $paginate = array(
         'limit' => 5,
-        'order' => array('Tratamiento.fecha_tratamiento' => 'asc')
+        'order' => array('Tratamiento.ficha_id' => 'asc')
             );
         
 /**
@@ -62,7 +62,7 @@ class TratamientosController extends AppController {
                 $this->set('prestacions', $this->Tratamiento->Prestacion->find('list'));
                 $this->set('id_ficha', $id_ficha);
                 $this->set('obras', $this->Tratamiento->ObraSocial->find('list'));
-                //$this->set('prest_trats', $this->Tratamiento->PrestacionTratamiento->find('all'));
+                $this->set('prestaciones', $this->Tratamiento->Prestacion->find('all'));
                 
                 if ($this->request->is('post')) {
                     $this->Tratamiento->create();
@@ -86,6 +86,7 @@ class TratamientosController extends AppController {
             $this->set('prestacions', $this->Tratamiento->Prestacion->find('list'));
             $this->set('fichas', $this->Tratamiento->FichaDental->find('list'));
             $this->set('obras', $this->Tratamiento->ObraSocial->find('list'));
+            $this->set('prestaciones', $this->Tratamiento->Prestacion->find('all'));
             
             if (!$id) {
                 throw new NotFoundException(__('Id inválido.'));

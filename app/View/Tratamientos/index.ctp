@@ -26,8 +26,8 @@
 <table>
     <tr>
         <th><?php echo $this->Paginator->sort('id_tratamiento', 'ID:');?></th>
-        <th><?php echo $this->Paginator->sort('ficha_id', 'Ficha:');?></th>
-        <th><?php echo $this->Paginator->sort('fecha_tratamiento', 'Fecha:');?></th>
+        <th><?php echo $this->Paginator->sort('ficha_id', 'Ficha:');?></th>        
+        <th><?php echo $this->Paginator->sort('prestacion_id', 'Prestación:');?></th>
         <th><?php echo $this->Paginator->sort('obra_id', 'Obra Social:');?></th>
         <th>Acciones</th>
     </tr>
@@ -36,7 +36,7 @@
         <tr>
             <td><?php echo $tratamiento['Tratamiento']['id_tratamiento']; ?></td>
             <td><?php echo $tratamiento['Tratamiento']['ficha_id']; ?></td>
-            <td><?php echo $tratamiento['Tratamiento']['fecha_tratamiento']; ?></td>
+            <td><?php echo $tratamiento['Tratamiento']['prestacion_id']; ?></td>
             <td><?php echo $tratamiento['Tratamiento']['obra_id']; ?></td>
             <td>
                 <?php echo $this->Html->link('Editar', array('action'=>'edit',$tratamiento['Tratamiento']['id_tratamiento'])); ?>/

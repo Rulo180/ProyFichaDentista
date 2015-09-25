@@ -20,7 +20,7 @@ class Tratamiento extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'id_tratamiento';
+	public $displayField = 'fecha_tratamiento';
 
         
   /**
@@ -35,10 +35,6 @@ class Tratamiento extends AppModel {
         'FichaDental' => array(
             'className' => 'FichaDental',
             'foreignKey' => 'ficha_id'
-        ),
-        'Prestacion' => array(
-            'className' => 'Prestacion',
-            'foreignKey' => 'prestacion_id'
         )
     );
         
@@ -52,10 +48,10 @@ class Tratamiento extends AppModel {
 //            //'dependent' => false
 //            )
 //        );
-        /*      ULTIMA OPCION ELEGIDA!!! 
+        
         public $hasAndBelongsToMany = array(
         'Prestacion'    
-        'Prestacion' => array(
+        /*'Prestacion' => array(
             'className' => 'Prestacion',
             'joinTable' => 'prestacion_tratamientos',
             'foreignKey' => 'tratamiento_id',
@@ -68,14 +64,14 @@ class Tratamiento extends AppModel {
             'offset' => '',
             'finderQuery' => '',
             'with' => ''
-            )
-    );*/
+            )*/
+    );
 /**
  * Validation rules
  *
  * @var array
  */
-	/*public $validate = array(
+	public $validate = array(
 		'fecha_tratamiento' => array(
 			'rule' => 'notEmpty',
 			'message' => 'El campo fecha no puede quedar vacio',
@@ -84,7 +80,7 @@ class Tratamiento extends AppModel {
 			//'last' => false, // Stop validation after this rule
 			//'on' => 'create', // Limit validation to 'create' or 'update' operations
 		)        
-	);*/
+	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
