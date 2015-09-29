@@ -140,9 +140,9 @@ class TurnosController extends AppController {
                 }
 	}
         
-        public function buscar(){
+        public function buscar($filtro = NULL){
             
-            $filtro = $this->request->data('Buscar.filtro');
+            //$filtro = $this->request->data('Buscar.filtro');
             
             if($this->request->data('Buscar.desde') != null and $this->request->data('Buscar.hasta') != null){
                 $desde = $this->request->data('Buscar.desde');
