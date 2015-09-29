@@ -136,24 +136,25 @@ a {
 	padding: 0;
         float: right;
         font-family: Arial, Helvetica, sans-serif;
+        
 }
 
-#menu ul {
+.desplegable {
     
-	margin: 0;
+        margin: 0;
 	padding: 0px 0px 0px 0px;
 	list-style: none;
 	line-height: normal;
 }
 
-#menu > ul li {
+.desplegable li {
         float: left;
         position: relative;
         margin-right: 1px;
 	padding: 50px 20px 15px 20px;
 }
 
-#menu li a {
+.desplegable li a {
 	display: block;
 	height: 20px;	
 	text-decoration: none;
@@ -162,29 +163,27 @@ a {
 	font-size: 14px;
 	font-weight: bold;
 	color: #FFFFFF;
-        //Borrable
-        border-left: 1px solid #000;
-        border-right: 1px solid #666;
           
 }
 
-#menu a:hover, #menu .current_page_item a {
+.desplegable li:hover > a, .desplegable .current_page_item a {
 	text-decoration: none;
 	color: #ffcc00;
 }
 
-#menu .current_page_item a {
+.desplegable .current_page_item a {
        
 }
 
  /* los submenús */
-  .desplegable li ul {
+  .desplegable ul {
+    list-style: none;
     border-radius: 0 0 5px 5px;
+    left: 0;
     margin: 0;
     opacity: 0; /* no son visibles */
-    max-width: 140px;
     position: absolute;
-    //top: 90px; /* se ubican debajo del enlace principal */
+    top: 90px; /* se ubican debajo del enlace principal */
     /* el color de fondo */
     background: #222;
     background: -moz-linear-gradient(#222,#555);
@@ -203,11 +202,10 @@ a {
   .desplegable li:hover > ul { opacity: 1; }
 
    /* cada uno de los items de los submenús */
-  .desplegable li ul li {
+  .desplegable ul li {
     height: 0; /* no son visibles */
     overflow: hidden;
     padding: 0;
-    position: relative;
     /* animamos su visibildiad */
     -moz-transition: height .25s ease .1s;
     -webkit-transition: height .25s ease .1s;
@@ -216,49 +214,50 @@ a {
     transition: height .25s ease .1s;
   }
   .desplegable li:hover > ul li {
-    height: 40px; /* los mostramos */
+    height: 30px; /* los mostramos */
     overflow: visible;
+    padding: 0;
     margin: 0 -4rem -4rem -4rem;
     padding: 0 4rem 4rem 4rem;
   }
-  .desplegable li ul li a { //Al parecer padding, color, text-transform y otros atributos más estan siendo pisados.
-    //border: none;
-    border: 1px solid #111;
+  .desplegable ul li a {
+    border: none;
+    border-bottom: 1px solid #111;
     margin: 0;
     /* el ancho dependerá de los textos a utilizar */
-    padding: 10px 50px;
-    
-    margin-right: 1px;
-    text-align: center;
-    text-transform: lowercase;
-    color: #c43c35;
-
+    padding: 5px 10px;
+    width: 100px;
+    text-transform: capitalize;
   }
   /* el último n otiene un borde */
-  .desplegable ul li:last-child a { border: none;}
+  .desplegable ul li:last-child a { border: none; }
+
 
  
 /** Column **/
 
 #column {
-        width: 19%;
+        width: 200px;
         height: auto;
         background-color: #e32;
+        padding: 0;
         float: left;
-        margin-right: 5px;
+        margin-right: 10px;
         min-height: 400px;
 }
 
-column ul{
-        margin-left: 0px;
-        width: 100%;
+#column ul{
+        width: 150px;
+        list-style-type: none;
+        padding-left: 20px;
 }
 
 #column li{
-        width: 80%;
-        background-color:#E6B800;
+        
         margin-bottom: 10px;
-        list-style-type: none;
+        
+        border: 1px solid;
+        border-color: #E6B800;
 }
 
 /** View **/
@@ -271,8 +270,29 @@ column ul{
 /** Paginate **/
 
 #paginate {
-    alignment-adjust: central;
+    width: 800px;
+    height: 50px;
+    float: left;
+    padding: 10px 30px;
+    background-color: beige;
 }
+
+.current {
+    
+}
+
+.prev {
+    
+}
+
+.next {
+    
+}
+
+.disabled {
+    
+}
+
 
 /** Tables **/
 table {
