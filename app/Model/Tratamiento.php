@@ -39,6 +39,14 @@ class Tratamiento extends AppModel {
         'Prestacion' => array(
             'className' => 'Prestacion',
             'foreignKey' => 'prestacion_id'
+        ),
+        'Diente' => array(
+            'className' => 'Diente',
+            'foreignKey' => 'diente_id'
+        ),
+        'Cara' => array(
+            'className' => 'Cara',
+            'foreignKey' => 'cara_id'
         )
     );
         

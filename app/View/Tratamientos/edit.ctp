@@ -10,15 +10,15 @@
     <table>
         <tr>
             <td>Obra Social:</td>
+            <td>Diente:</td>
+            <td>Cara:</td>
             <td>Prestación: </td>
         </tr>
         <tr>
             <td><?php echo $this->Form->input('obra_id', array('label' => '', 'empty' => '(Seleccionar)')); ?> </td>
+            <td><?php echo $this->Form->input('diente_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $dientes)); ?> </td>
+            <td><?php echo $this->Form->input('cara_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $caras)); ?> </td>
             <td><?php echo $this->Form->input('Prestacion.0', array('label' => '', 'empty' => '(Seleccionar)', 'options' => $prestacions)); ?> </td>
-        </tr>
-        <tr>
-            <td><?php echo $this->Form->input('obra_id', array('label' => '', 'empty' => '(Seleccionar)')); ?> </td>
-            <td><?php echo $this->Form->input('Prestacion.1', array('label' => '', 'empty' => '(Seleccionar)', 'options' => $prestacions)); ?> </td>
         </tr>
     </table>
     

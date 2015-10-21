@@ -3,10 +3,7 @@
 <?php $this->start('column') ;?>
     <?php $this->assign('tit_col', 'Opciones:'); ?>
     <ul>    
-        <li><?php echo $this->Html->link('Buscar', array('controller' => 'Pacientes', 'action'=>'buscar', "Valles"));?></li>
-
         <li><?php echo $this->Html->link('Agregar Prestacion', array('action'=>'add' ))?></li>
-        
     </ul> 
 <?php $this->end(); ?>
 

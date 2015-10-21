@@ -16,7 +16,8 @@
         <li>
         <?php echo $this->Form->end('Buscar');?>
         </li>
-        <li><?php echo $this->Html->link('Agregar Tratamiento', array('controller' => 'Tratamientos', 'action'=>'add', $id_ficha));?></li>
+        <li><?php echo $this->Html->link('Agregar Tratamiento', array('controller' => 'Tratamientos', 'action'=>'add', $id_ficha, 1));?></li>
+        <li><?php echo $this->Html->link('Agregar Múltiples Trat.', array('controller' => 'Tratamientos', 'action'=>'add', $id_ficha, 3));?></li>
         
     </ul> 
 <?php $this->end(); ?>

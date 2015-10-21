@@ -35,24 +35,12 @@ class Prestacion extends AppModel {
 //            )
 //        );
         
-        public $hasAndBelongsToMany = array(
-        'Tratamiento'
-        /*'Tratamiento' =>
-            array(
-                'className' => 'Tratamiento',
-                'joinTable' => 'prestacion_tratamientos',
-                'foreignKey' => 'prestacion_id',
-                'associationForeignKey' => 'tratamiento_id',
-                'unique' => false,
-                'conditions' => '',
-                'fields' => '',
-                'order' => '',
-                'limit' => '',
-                'offset' => '',
-                'finderQuery' => '',
-                'with' => ''
-            )*/
-    );
+        public $hasMany = array(
+        'Tratamiento' => array(
+            'className' => 'Tratamiento',
+            'foreignKey' => 'prestacion_id',
+            'dependent' => false)
+            );
         
 /**
  * Validation rules

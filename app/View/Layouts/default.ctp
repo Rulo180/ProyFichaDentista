@@ -38,14 +38,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                         <li><a href="/ProyFichaDentista/Turnos/buscar/1">Hoy</a></li>
                                         <li><a href="/ProyFichaDentista/Turnos/buscar/2">Semana</a></li>
                                         <li><a href="/ProyFichaDentista/Turnos/buscar/3">Mes</a></li>
-                                        <li><a href="/ProyFichaDentista/Turnos/buscar/3">Mes</a></li>
-                                        <li><a href="/ProyFichaDentista/Turnos/buscar/3">Mes</a></li>
-                                        <li><a href="/ProyFichaDentista/Turnos/buscar/3">Mes</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="/ProyFichaDentista/FichaDentals">Fichas</a></li>
-				<li><a href="/ProyFichaDentista/Prestacions">Prestaciones</a></li>
-                                <li><a href="/ProyFichaDentista/ObraSocials">Obras Sociales</a></li>
+                                <li><a>Parámetros</a>
+                                    <ul>
+                                        <li><a href="/ProyFichaDentista/Prestacions">Prestaciones</a></li>
+                                        <li><a href="/ProyFichaDentista/ObraSocials">Obras</a></li>
+                                        <li><a href="/ProyFichaDentista/Dientes">Dientes</a></li>
+                                        <li><a href="/ProyFichaDentista/Caras">Caras</a></li>
+                                    </ul>
+                                </li>
 			</ul>
 		</div>
                 </div>
