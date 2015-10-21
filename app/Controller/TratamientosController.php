@@ -57,12 +57,16 @@ class TratamientosController extends AppController {
  *
  * @return void
  */
-	public function add($id_ficha = null) {
+	public function add($id_ficha = null, $cant = null) {
                 
                 $this->set('prestacions', $this->Tratamiento->Prestacion->find('list'));
                 $this->set('id_ficha', $id_ficha);
                 $this->set('obras', $this->Tratamiento->ObraSocial->find('list'));
-                $this->set('prestaciones', $this->Tratamiento->Prestacion->find('all'));
+                $this->set('prestaciones', $this->Tratamiento->Prestacion->find('list'));
+                $this->set('dientes', $this->Tratamiento->Diente->find('list'));
+                $this->set('caras', $this->Tratamiento->Cara->find('list'));
+                
+                $this->set('cant', $cant);
                 
                 if ($this->request->is('post')) {
                     $this->Tratamiento->create();
