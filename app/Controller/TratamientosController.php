@@ -21,7 +21,7 @@ class TratamientosController extends AppController {
         
         public $paginate = array(
         'limit' => 5,
-        'order' => array('Tratamiento.ficha_id' => 'asc')
+        'order' => array('Tratamiento.fecha_trat' => 'asc')
             );
         
 /**
@@ -39,7 +39,6 @@ class TratamientosController extends AppController {
 		$this->Tratamiento->recursive = 0;
 		$this->set('tratamientos', $this->Paginator->paginate());
                 $this->set('id_ficha', $id);
-                //$this->layout = 'atmosphere';
 
 	}
         
@@ -57,7 +56,26 @@ class TratamientosController extends AppController {
  *
  * @return void
  */
-	public function add($id_ficha = null, $cant = null) {
+	public function add($id_ficha = null) {
+                
+                $this->set('prestacions', $this->Tratamiento->Prestacion->find('list'));
+                $this->set('id_ficha', $id_ficha);
+                $this->set('obras', $this->Tratamiento->ObraSocial->find('list'));
+                $this->set('prestaciones', $this->Tratamiento->Prestacion->find('list'));
+                $this->set('dientes', $this->Tratamiento->Diente->find('list'));
+                $this->set('caras', $this->Tratamiento->Cara->find('list'));
+                
+                if ($this->request->is('post')) {
+                        $this->Tratamiento->create();
+                        if ($this->Tratamiento->save($this->request->data)){
+                            $this->Session->setFlash(__('El tratamiento ha sido guardado.'));
+                            return $this->redirect(array('action' => 'index', $id_ficha));
+                    }
+                $this->Session->setFlash(__('El tratamiento no ha sido guardado. Intente nuevamente.'));
+                }
+        }
+ 
+ public function multiadd($id_ficha = null, $cant = null) {
                 
                 $this->set('prestacions', $this->Tratamiento->Prestacion->find('list'));
                 $this->set('id_ficha', $id_ficha);
@@ -67,17 +85,59 @@ class TratamientosController extends AppController {
                 $this->set('caras', $this->Tratamiento->Cara->find('list'));
                 
                 $this->set('cant', $cant);
-                
+                  
                 if ($this->request->is('post')) {
-                    $this->Tratamiento->create();
-                    $ficha = $this->Tratamiento->field('ficha_id');
-                if ($this->Tratamiento->save($this->request->data)) {
-                    $this->Session->setFlash(__('El tratamiento ha sido guardado.'));
-                    return $this->redirect(array('action' => 'index', $ficha));
+                    $saves = 0;
+                     foreach($this->request->data['Tratamiento'] as $data){
+                        $this->Tratamiento->create(); 
+                        $this->Tratamiento->set('ficha_id', $id_ficha);
+                        if($this->Tratamiento->save($data)){
+                            $saves++;
+                        }
+                    }  
+                    if($saves == $cant){
+                        $this->Session->setFlash(__('Los tratamientos han sido guardados.'));
+                        return $this->redirect(array('action' => 'index', $id_ficha)); 
+                    }
+                    $this->Session->setFlash(__('Los tratamientos no han sido guardados. Intente nuevamente.'));      
                 }
-                $this->Session->setFlash(__('El tratamiento no ha sido guardado. Intente nuevamente.'));
+                
+//                if ($this->request->is('post')) {
+//                    if ($this->Tratamiento->saveAll($this->request->data['Tratamiento'])) {
+//                        $this->Session->setFlash(__('Los tratamientos han sido guardados.'));
+//                        return $this->redirect(array('action' => 'index', $id_ficha));
+//                    }
+//                $this->Session->setFlash(__('Los tratamientos no han sido guardados. Intente nuevamente.'));
+//                }
+        }
+ 
+        public function add_dinamico($id_ficha = null) {
+                
+                $this->set('prestacions', $this->Tratamiento->Prestacion->find('list'));
+                $this->set('id_ficha', $id_ficha);
+                $this->set('obras', $this->Tratamiento->ObraSocial->find('list'));
+                $this->set('prestaciones', $this->Tratamiento->Prestacion->find('list'));
+                $this->set('dientes', $this->Tratamiento->Diente->find('list'));
+                $this->set('caras', $this->Tratamiento->Cara->find('list'));
+                
+                  
+                if ($this->request->is('post')) {
+                    $saves = 0;
+                    $cant = 0;
+                     foreach($this->request->data['Tratamiento'] as $data){
+                         $cant++;
+                        $this->Tratamiento->create(); 
+                        $this->Tratamiento->set('ficha_id', $id_ficha);
+                        if($this->Tratamiento->save($data)){
+                            $saves++;
+                        }
+                    }if ($cant == $saves){
+                        $this->Session->setFlash(__('Los tratamientos han sido guardados.'));
+                        return $this->redirect(array('action' => 'index', $id_ficha)); 
+                    }
+                    $this->Session->setFlash(__('Los tratamientos no han sido guardados. Intente nuevamente.'));      
                 }
-    }
+        }
 /**
  * edit method
  *
@@ -90,7 +150,9 @@ class TratamientosController extends AppController {
             $this->set('prestacions', $this->Tratamiento->Prestacion->find('list'));
             $this->set('fichas', $this->Tratamiento->FichaDental->find('list'));
             $this->set('obras', $this->Tratamiento->ObraSocial->find('list'));
-            $this->set('prestaciones', $this->Tratamiento->Prestacion->find('all'));
+            $this->set('prestaciones', $this->Tratamiento->Prestacion->find('list'));
+            $this->set('dientes', $this->Tratamiento->Diente->find('list'));
+                $this->set('caras', $this->Tratamiento->Cara->find('list'));
             
             if (!$id) {
                 throw new NotFoundException(__('Id inválido.'));
@@ -103,7 +165,7 @@ class TratamientosController extends AppController {
 
             if ($this->request->is(array('post', 'put'))) {
                 $this->Tratamiento->id = $id;
-                if ($this->Tratamiento->saveAll($this->request->data, array('deep' => true))) {
+                if ($this->Tratamiento->save($this->request->data)) {
                     $this->Session->setFlash(__('El tratamiento ha sido actualizado.'));
                     $id_ficha = $this->Tratamiento->field('ficha_id');
                     return $this->redirect(array('action' => 'index', $id_ficha));

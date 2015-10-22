@@ -3,21 +3,10 @@
 
 <?php $this->start('column') ;?>
     <?php $this->assign('tit_col', 'Opciones:'); ?>
-    <ul>    
-        <li>
-        <?php echo $this->Form->create('Paciente', array('action'=>'buscar'))  ?>
-        <?php echo $this->Form->input("Buscar.campo", array('label' => false));?>
-        </li>
-        <li>
-        <?php $options = array('1' => 'Nombre', '2' => 'Afiliado');?>
-        <?php $attributes = array('value' => '1', 'separator' => '<br>', 'beetwen' => '...','legend' => false);?>
-        <?php echo $this->Form->radio('Buscar.filtro', $options, $attributes); ?>
-        </li>
-        <li>
-        <?php echo $this->Form->end('Buscar');?>
-        </li>
-        <li><?php echo $this->Html->link('Agregar Tratamiento', array('controller' => 'Tratamientos', 'action'=>'add', $id_ficha, 1));?></li>
-        <li><?php echo $this->Html->link('Agregar Múltiples Trat.', array('controller' => 'Tratamientos', 'action'=>'add', $id_ficha, 3));?></li>
+    <ul>
+        <li><?php echo $this->Html->link('Agregar Múltiples Trat.', array('controller' => 'Tratamientos', 'action'=>'multiadd', $id_ficha, 3));?></li>
+        <li><?php echo $this->Html->link('Agregar Trat. Dinam.', array('controller' => 'Tratamientos', 'action'=>'add_dinamico', $id_ficha));?></li>
+        <li><?php echo $this->Html->link('Agregar Tratamiento', array('controller' => 'Tratamientos', 'action'=>'add', $id_ficha));?></li>
         
     </ul> 
 <?php $this->end(); ?>
@@ -27,7 +16,8 @@
 <table>
     <tr>
         <th><?php echo $this->Paginator->sort('id_tratamiento', 'ID:');?></th>
-        <th><?php echo $this->Paginator->sort('ficha_id', 'Ficha:');?></th>        
+        <th><?php echo $this->Paginator->sort('ficha_id', 'Ficha:');?></th>   
+        <th><?php echo $this->Paginator->sort('fecha_trat', 'Fecha:');?></th>
         <th><?php echo $this->Paginator->sort('prestacion_id', 'Prestación:');?></th>
         <th><?php echo $this->Paginator->sort('obra_id', 'Obra Social:');?></th>
         <th>Acciones</th>
@@ -37,6 +27,7 @@
         <tr>
             <td><?php echo $tratamiento['Tratamiento']['id_tratamiento']; ?></td>
             <td><?php echo $tratamiento['Tratamiento']['ficha_id']; ?></td>
+            <td><?php echo $tratamiento['Tratamiento']['fecha_trat']; ?></td>
             <td><?php echo $tratamiento['Tratamiento']['prestacion_id']; ?></td>
             <td><?php echo $tratamiento['Tratamiento']['obra_id']; ?></td>
             <td>

@@ -22,6 +22,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 
                 echo $this->Html->script('jquery-2.1.4'); // Include jQuery library
 	?>
+    
+<!--        <script type="text/javascript"> $(document).ready(function () 
+                { alert('JQuery is succesfully included'); }); 
+        </script>-->
 </head>
 <body>
 	<div id="frame">
@@ -68,6 +72,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     </div>
                 </div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	<?php 
+        echo $this->element('sql_dump');
+        echo $this->Js->writeBuffer(); // Write cached scripts
+        ?>
+    
 </body>
 </html>
