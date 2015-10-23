@@ -50,16 +50,6 @@ class Tratamiento extends AppModel {
         )
     );
         
-//        public $hasMany = array(
-//        'PrestacionTratamiento' => array(
-//            'className' => 'PrestacionTratamiento',
-//            //'foreignKey' => 'prestacion_id',
-//            //'conditions' => array('Comment.status' => '1'),
-//            //'order' => 'Paciente.nombre_paciente DESC',
-//            //'limit' => '5',
-//            //'dependent' => false
-//            )
-//        );
         /*      ULTIMA OPCION ELEGIDA!!! 
         public $hasAndBelongsToMany = array(
         'Prestacion'    
@@ -83,7 +73,7 @@ class Tratamiento extends AppModel {
  *
  * @var array
  */
-	/*public $validate = array(
+	public $validate = array(
 		'fecha_tratamiento' => array(
 			'rule' => 'notEmpty',
 			'message' => 'El campo fecha no puede quedar vacio',
@@ -91,8 +81,40 @@ class Tratamiento extends AppModel {
 			'required' => true,
 			//'last' => false, // Stop validation after this rule
 			//'on' => 'create', // Limit validation to 'create' or 'update' operations
-		)        
-	);*/
+		),
+                'prestacion_id' => array(
+                            'rule' => 'notEmpty',
+                            'message' => 'Debe indicar una Prestación para cada Tratamiento.',
+                            //'allowEmpty' => false,
+                            'required' => true,
+                            //'last' => false, // Stop validation after this rule
+                            //'on' => 'create', // Limit validation to 'create' or 'update' operations
+                    ),
+                'diente_id' => array(
+			'rule' => 'notEmpty',
+			'message' => 'Debe indicar un Diente para cada Tratamiento.',
+			//'allowEmpty' => false,
+			'required' => true,
+			//'last' => false, // Stop validation after this rule
+			//'on' => 'create', // Limit validation to 'create' or 'update' operations
+		),
+                'cara_id' => array(
+			'rule' => 'notEmpty',
+			'message' => 'Debe indicar una Cara para cada Tratamiento.',
+			//'allowEmpty' => false,
+			'required' => true,
+			//'last' => false, // Stop validation after this rule
+			//'on' => 'create', // Limit validation to 'create' or 'update' operations
+		),
+                'obra_id' => array(
+			'rule' => 'notEmpty',
+			'message' => 'Debe indicar una Obra Social para cada Tratamiento.',
+			//'allowEmpty' => false,
+			'required' => true,
+			//'last' => false, // Stop validation after this rule
+			//'on' => 'create', // Limit validation to 'create' or 'update' operations
+		)     
+	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

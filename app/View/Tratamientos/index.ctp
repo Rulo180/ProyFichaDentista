@@ -5,7 +5,6 @@
     <?php $this->assign('tit_col', 'Opciones:'); ?>
     <ul>
         <li><?php echo $this->Html->link('Agregar Múltiples Trat.', array('controller' => 'Tratamientos', 'action'=>'multiadd', $id_ficha, 3));?></li>
-        <li><?php echo $this->Html->link('Agregar Trat. Dinam.', array('controller' => 'Tratamientos', 'action'=>'add_dinamico', $id_ficha));?></li>
         <li><?php echo $this->Html->link('Agregar Tratamiento', array('controller' => 'Tratamientos', 'action'=>'add', $id_ficha));?></li>
         
     </ul> 
