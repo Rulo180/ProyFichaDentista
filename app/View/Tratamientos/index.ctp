@@ -4,6 +4,13 @@
 <?php $this->start('column') ;?>
     <?php $this->assign('tit_col', 'Opciones:'); ?>
     <ul>
+        <li>
+        <?php echo $this->Form->create('Tratamiento', array('action'=>'buscar'))  ?>
+        <?php echo $this->Form->input("Buscar.campo", array('label' => false));?>
+        </li>
+        <li>
+        <?php echo $this->Form->end('Buscar');?>
+        </li>
         <li><?php echo $this->Html->link('Agregar Múltiples Trat.', array('controller' => 'Tratamientos', 'action'=>'multiadd', $id_ficha, 3));?></li>
         <li><?php echo $this->Html->link('Agregar Tratamiento', array('controller' => 'Tratamientos', 'action'=>'add', $id_ficha));?></li>
         
@@ -27,8 +34,8 @@
             <td><?php echo $tratamiento['Tratamiento']['id_tratamiento']; ?></td>
             <td><?php echo $tratamiento['Tratamiento']['ficha_id']; ?></td>
             <td><?php echo $tratamiento['Tratamiento']['fecha_trat']; ?></td>
-            <td><?php echo $tratamiento['Tratamiento']['prestacion_id']; ?></td>
-            <td><?php echo $tratamiento['Tratamiento']['obra_id']; ?></td>
+            <td><?php echo $tratamiento['Prestacion']['nombre_prestacion']; ?></td>
+            <td><?php echo $tratamiento['ObraSocial']['nombre_obra']; ?></td>
             <td>
                 <?php echo $this->Html->link('Editar', array('action'=>'edit',$tratamiento['Tratamiento']['id_tratamiento'])); ?>/
                 <?php echo $this->Form->postLink('Borrar', array('action'=>'delete',$tratamiento['Tratamiento']['id_tratamiento']), array('confirm' => 'Esta seguro?')); ?>

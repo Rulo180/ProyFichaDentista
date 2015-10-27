@@ -33,7 +33,6 @@ class PacientesController extends AppController {
                 
 		$this->Paciente->recursive = 0;
 		$this->set('pacientes', $this->Paginator->paginate());
-                //$this->layout = 'atmosphere';
 
 	}
 
@@ -146,12 +145,13 @@ class PacientesController extends AppController {
            
             
             $pacientes =  $this->Paciente->find('all', $options);
+            $this->Paginator->settings = $options;
             
             if(!$pacientes){
                 $this->Session->setFlash(__('No se ha encontrado el paciente '. $campo . "."));
                 return $this->redirect(array('action' => 'index'));
             }else{
-                $this->set('pacientes', $pacientes);
+                $this->set('pacientes', $this->Paginator->paginate());
             }
                
         }

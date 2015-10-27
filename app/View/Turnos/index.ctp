@@ -32,7 +32,7 @@
             <td><?php echo $turno['Turno']['id_turno']; ?></td>
             <td><?php echo $turno['Turno']['fecha_turno']; ?></td>
             <td><?php echo $turno['Turno']['hora_turno']; ?></td>
-            <td><?php echo $turno['Turno']['paciente_id']; ?></td>
+            <td><?php echo $turno['Paciente']['Nombre_Completo']; ?></td>
             <td><?php echo $turno['Turno']['observacion_turno']; ?></td>
             <td>
                 <?php echo $this->Html->link('Editar', array('action'=>'edit',$turno['Turno']['id_turno'])); ?>/

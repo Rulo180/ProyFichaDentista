@@ -18,6 +18,6 @@
             <td>Localidad: <?php echo $paciente['Paciente']['localidad']; ?></td>
         </tr>
         <tr>
-            <td>Obra Social: <?php echo $paciente['Paciente']['obra_id']; ?></td>
+            <td>Obra Social: <?php echo $paciente['ObraSocial']['nombre_obra']; ?></td>
         </tr>
 </table>

@@ -39,7 +39,8 @@
             <td><?php echo $this->Html->link($paciente['Paciente']['Nombre_Completo'], array('action'=>'view',$paciente['Paciente']['id_paciente'])); ?></td>
             <td><?php echo $paciente['Paciente']['nro_afiliado']; ?></td>
             <td><?php echo $paciente['Paciente']['dni_paciente']; ?></td>
-            <td><?php echo $paciente['Paciente']['obra_id']; ?></td>
+            <td><?php echo $paciente['ObraSocial']['nombre_obra']; ?></td>
+            
             <td>
                 <?php echo $this->Html->link('Editar', array('action'=>'edit',$paciente['Paciente']['id_paciente'])); ?>/
                 <?php echo $this->Form->postLink('Borrar', array('action'=>'delete',$paciente['Paciente']['id_paciente']), array('confirm' => 'Esta seguro?')); ?>

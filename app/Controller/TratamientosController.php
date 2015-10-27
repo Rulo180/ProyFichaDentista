@@ -85,13 +85,6 @@ class TratamientosController extends AppController {
                     $this->Session->setFlash(__('Los tratamientos no han sido guardados. Intente nuevamente.'));      
                 }
                 
-//                if ($this->request->is('post')) {
-//                    if ($this->Tratamiento->saveAll($this->request->data['Tratamiento'])) {
-//                        $this->Session->setFlash(__('Los tratamientos han sido guardados.'));
-//                        return $this->redirect(array('action' => 'index', $id_ficha));
-//                    }
-//                $this->Session->setFlash(__('Los tratamientos no han sido guardados. Intente nuevamente.'));
-//                }
         }
  
         public function add($id_ficha = null) {
@@ -185,24 +178,19 @@ class TratamientosController extends AppController {
         public function buscar(){
             
             $campo = $this->request->data('Buscar.campo');
-            $filtro = $this->request->data('Buscar.filtro');
-            
-            if ($filtro == '1'){
  
-                $options = array('conditions' => array( 'Paciente.' . 'Nombre_Completo '. 'LIKE' => "%$campo%"));                                      
-            }else if ($filtro == '2'){
-                
-                $options = array('conditions' => array( 'Paciente.' . 'nro_afiliado '  => "$campo"));
-            }
+            $options = array('conditions' => array( 'Paciente.' . 'Nombre_Completo '. 'LIKE' => "%$campo%"));                                      
+            $pacientes =  $this->FichaDental->Paciente->find('first', $options);
             
-            $pacientes =  $this->Paciente->find('all', $options);
+            $options = array('conditions' => array('FichaDental.' . 'paciente_id' => $pacientes['Paciente']['id_paciente']));
+            $fichas = $this->FichaDental->find('all', $options);
+            $this->Paginator->settings = $options;
             
-            if(!$pacientes){
+            if(!$fichas){
                 $this->Session->setFlash(__('No se ha encontrado el paciente '. $campo . "."));
-                $id_ficha = $this->Tratamiento->field('ficha_id');
-                return $this->redirect(array('action' => 'index', $id_ficha));
+                return $this->redirect(array('action' => 'index'));
             }else{
-                $this->set('pacientes', $pacientes);
+                $this->set('fichas', $this->Paginator->paginate());
             }
                
         }
