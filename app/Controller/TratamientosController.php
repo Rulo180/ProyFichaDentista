@@ -178,19 +178,22 @@ class TratamientosController extends AppController {
         public function buscar(){
             
             $campo = $this->request->data('Buscar.campo');
- 
-            $options = array('conditions' => array( 'Paciente.' . 'Nombre_Completo '. 'LIKE' => "%$campo%"));                                      
-            $pacientes =  $this->FichaDental->Paciente->find('first', $options);
+            //$options = array('conditions' => array('Prestacion.' . 'id_prestacion' => $campo));
+            //$id_prestacion = $this->Tratamiento->Prestacion->find('list', $options);
+            //$this->Session->setFlash(__('ID_prestacion: '. $id_prestacion['Prestacion']['id_prestacion'] . "."));
+            $id_ficha = $this->request->data('Buscar.id_ficha');
             
-            $options = array('conditions' => array('FichaDental.' . 'paciente_id' => $pacientes['Paciente']['id_paciente']));
-            $fichas = $this->FichaDental->find('all', $options);
+            
+            
+            $options = array('conditions' => array('AND' => array('Tratamiento.' . 'prestacion_id' => $campo , 'Tratamiento.' . 'ficha_id' => $id_ficha)));
+            $tratamientos = $this->Tratamiento->find('all', $options);
             $this->Paginator->settings = $options;
             
-            if(!$fichas){
+            if(!$tratamientos){
                 $this->Session->setFlash(__('No se ha encontrado el paciente '. $campo . "."));
                 return $this->redirect(array('action' => 'index'));
             }else{
-                $this->set('fichas', $this->Paginator->paginate());
+                $this->set('tratamientos', $this->Paginator->paginate());
             }
                
         }

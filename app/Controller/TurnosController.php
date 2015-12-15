@@ -141,9 +141,7 @@ class TurnosController extends AppController {
 	}
         
         public function buscar($filtro = NULL){
-            
-            //$filtro = $this->request->data('Buscar.filtro');
-            
+
             if($this->request->data('Buscar.desde') != null and $this->request->data('Buscar.hasta') != null){
                 $desde = $this->request->data('Buscar.desde');
                 $hasta = $this->request->data('Buscar.hasta');
@@ -172,12 +170,10 @@ class TurnosController extends AppController {
                 $options = array('conditions' => array('EXTRACT(YEAR FROM '. 'Turno.' . 'fecha_turno' .')' => $año),
                                  'order' => array('EXTRACT(MONTH FROM '. 'Turno.' . 'fecha_turno'.')'));
                 
-            }else if($this->request->data('Buscar.desde') != null and $this->request->data('Buscar.hasta') != null){
-                $desde = $this->request->data('Buscar.desde');
-                $hasta = $this->request->data('Buscar.hasta');
-                $options = array('conditions' => array('AND' => array('Turno.fecha_turno' . ' >= ' => $desde, 
-                                                                      'Turno.fecha_turno'. ' <= ' => $hasta)));
-                $msj = 'entre '. $desde . ' y ' . $hasta . '.';
+            }else if($this->request->data('Buscar.fecha') != null){
+                $fecha = $this->request->data('Buscar.fecha');
+                $options = array('conditions' => array('Turno.fecha_turno' . ' = ' => $fecha));
+                $msj = 'para el '. $fecha['day'] . '/' . $fecha['month'] . '/'  . $fecha['year'];
             }
             
             $this->set('msj', $msj);

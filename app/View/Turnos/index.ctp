@@ -3,12 +3,10 @@
 <?php $this->start('column');?>
     <?php $this->assign('tit_col', 'Filtrar:'); ?>
     <ul>    
-         <li><?php echo $this->Form->create('Turno', array('action'=>'buscar'));?>
-                    <?php   echo $this->Form->input("Buscar.desde", array('label' => 'desde:', 'type' => 'date', 'dateFormat' => 'DMY', 'separator' => false));
-                            //echo $this->Form->input('Buscar.desde', array('label' => 'desde'));?></li>
-                <li><?php echo $this->Form->input("Buscar.hasta", array('label' => 'hasta:', 'type' => 'date', 'dateFormat' => 'YMD', 'separator' => false));
-                            echo $this->Form->input('Buscar.hasta', array('label' => 'hasta:'));?></li>
-                <li><?php echo $this->Form->end('Buscar'); ?></li>
+        <li><?php echo $this->Form->create('Turno', array('action'=>'buscar'));?>
+                    <?php   echo $this->Form->input("Buscar.fecha", array('type' => 'date', 'dateFormat' => 'DMY', 'separator' => false));?>
+        </li>
+        <li><?php echo $this->Form->end('Buscar'); ?></li>
         <li><?php echo $this->Html->link('Agregar Turno', array('controller' => 'Turnos', 'action'=>'add', ))?></li>
         
     </ul> 
