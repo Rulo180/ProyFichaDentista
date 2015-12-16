@@ -9,26 +9,32 @@ App::uses('AppController', 'Controller');
  */
 class CarasController extends AppController {
         
-        var $helpers = array('Html', 'Form', 'Session');
+        var $helpers = array('Html', 'Form', 'Session', 'CakeBreadcrumbs.Breadcrumb');
 /**
  * Components
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'CakeBreadcrumbs.Breadcrumb');
         
         public $paginate = array(
         'limit' => 10,
         'order' => array('Cara.nombre_cara' => 'asc')
             );
         
+        public function beforeFilter() {
+            parent::beforeFilter();
+            $this->Breadcrumb->add('Inicio/', '/Turnos');
+  }
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
-            
+                
+                $this->Breadcrumb->add('Parametros/');
+                $this->Breadcrumb->add('Caras/', '/Caras/index/');
                 $this->Paginator->settings = $this->paginate;
             
 		$this->Cara->recursive = 0;
@@ -59,13 +65,16 @@ class CarasController extends AppController {
  */
 	public function add() {
             
+                $this->Breadcrumb->add('Parametros/');
+                $this->Breadcrumb->add('Caras/', '/Caras/index/');
+                $this->Breadcrumb->add('Agregar/', '/Caras/add');
                 if ($this->request->is('post')) {
                     $this->Cara->create();
                 if ($this->Cara->save($this->request->data)) {
                     $this->Session->setFlash(__('La cara ha sido guardada.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('La cara no ha sido guardada. Intente nuevamente.'));
+                $this->Session->setFlash(__('El registro no ha sido guardado. Intente nuevamente.'));
                 }
     }
 /**
@@ -77,6 +86,9 @@ class CarasController extends AppController {
  */
 	public function edit($id = null) {
             
+            $this->Breadcrumb->add('Parametros/');
+            $this->Breadcrumb->add('Caras/', '/Caras/index/');
+            $this->Breadcrumb->add('Editar/', 'Caras/edit/' . $id);
             if (!$id) {
                 throw new NotFoundException(__('Id inválido.'));
             }
@@ -92,7 +104,7 @@ class CarasController extends AppController {
                     $this->Session->setFlash(__('La cara ha sido actualizada.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('La cara no ha sido guardada. Intente nuevamente.'));
+                $this->Session->setFlash(__('El registro no ha sido guardado. Intente nuevamente.'));
         }
 
             if (!$this->request->data) {
@@ -112,9 +124,10 @@ class CarasController extends AppController {
                     throw new MethodNotAllowedException();
                 }
 
+                $cara = $this->Cara->findByIdCara($id);
                 if ($this->Cara->delete($id)) {
                     $this->Session->setFlash(
-                    __('La cara '.$this->Cara->field('nombre_cara').' ha sido borrada.', h($id))
+                    __('La cara '.$cara['Cara']['nombre_cara'].' ha sido borrada.', h($id))
                 );
                 return $this->redirect(array('action' => 'index'));
                 }

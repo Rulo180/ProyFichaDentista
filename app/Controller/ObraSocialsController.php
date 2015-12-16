@@ -9,18 +9,24 @@ App::uses('AppController', 'Controller');
  */
 class ObraSocialsController extends AppController {
         
-        var $helpers = array('Html', 'Form', 'Session');
+        var $helpers = array('Html', 'Form', 'Session', 'CakeBreadcrumbs.Breadcrumb');
 /**
  * Components
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'CakeBreadcrumbs.Breadcrumb');
         
         public $paginate = array(
         'limit' => 10,
         'order' => array('ObraSocial.nombre_obra' => 'asc')
             );
+        
+        public function beforeFilter() {
+            parent::beforeFilter();
+            $this->Breadcrumb->add('Inicio/', '/Turnos');
+  }
+  
 /**
  * index method
  *
@@ -28,6 +34,8 @@ class ObraSocialsController extends AppController {
  */
 	public function index() {
             
+                $this->Breadcrumb->add('Parametros/');
+                $this->Breadcrumb->add('Obras Sociales/', '/ObraSocials/index/');
                 $this->Paginator->settings = $this->paginate;
             
 		$this->ObraSocial->recursive = 0;
@@ -57,6 +65,10 @@ class ObraSocialsController extends AppController {
  * @return void
  */
 	public function add() {
+            
+                $this->Breadcrumb->add('Parametros/');
+                $this->Breadcrumb->add('Obras Sociales/', '/ObraSocials/index/');
+                $this->Breadcrumb->add('Agregar/', '/ObraSocials/add/');
                 
                 if ($this->request->is('post')) {
                     $this->ObraSocial->create();
@@ -64,7 +76,7 @@ class ObraSocialsController extends AppController {
                     $this->Session->setFlash(__('La obra social ha sido guardada.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('La obra social no ha sido guardada. Intente nuevamente.'));
+                $this->Session->setFlash(__('El registro no ha sido guardado. Intente nuevamente.'));
                 }
     }
 /**
@@ -75,6 +87,10 @@ class ObraSocialsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+            
+            $this->Breadcrumb->add('Parametros/');
+            $this->Breadcrumb->add('Obras Sociales/', '/ObraSocials/index/');
+            $this->Breadcrumb->add('Editar/', '/ObraSocials/edit/'. $id);
             
             if (!$id) {
                 throw new NotFoundException(__('Id inválido.'));
@@ -91,7 +107,7 @@ class ObraSocialsController extends AppController {
                     $this->Session->setFlash(__('La obra social ha sido actualizada.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('La obra social no ha sido guardada. Intente nuevamente.'));
+                $this->Session->setFlash(__('El registro no ha sido guardado. Intente nuevamente.'));
         }
 
             if (!$this->request->data) {
@@ -110,10 +126,11 @@ class ObraSocialsController extends AppController {
 		if ($this->request->is('get')) {
                     throw new MethodNotAllowedException();
                 }
-
+                
+                $obra = $this->ObraSocial->findByIdObra($id);
                 if ($this->ObraSocial->delete($id)) {
                     $this->Session->setFlash(
-                    __('La obra social '.$this->ObraSocial->field('nombre_obra').' ha sido borrada.', h($id))
+                    __('La obra social '. $obra['ObraSocial']['nombre_obra'].' ha sido borrada.', h($id))
                 );
                 return $this->redirect(array('action' => 'index'));
                 }
@@ -139,6 +156,10 @@ class ObraSocialsController extends AppController {
         }
         
         public function verPacientes($id = null){
+            
+            $this->Breadcrumb->add('Parametros/');
+            $this->Breadcrumb->add('Obras Sociales/', '/ObraSocials/index/');
+            $this->Breadcrumb->add('Pacientes/', '/ObraSocials//verPacientes/'. $id);
             
             $options = array('conditions' => array('Paciente.obra_id' => $id));
             $this->loadModel('Paciente');

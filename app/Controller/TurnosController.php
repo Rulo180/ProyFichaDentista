@@ -9,18 +9,23 @@ App::uses('AppController', 'Controller');
  */
 class TurnosController extends AppController {
         
-        var $helpers = array('Html', 'Form', 'Session');
+        var $helpers = array('Html', 'Form', 'Session', 'CakeBreadcrumbs.Breadcrumb');
 /**
  * Components
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'CakeBreadcrumbs.Breadcrumb');
         
         public $paginate = array(
         'limit' => 10,
         'order' => array('Turno.fecha_turno' => 'desc')
             );
+        
+        public function beforeFilter() {
+            parent::beforeFilter();
+            $this->Breadcrumb->add('Inicio/', '/Turnos');
+  }
         
 /**
  * index method
@@ -28,11 +33,12 @@ class TurnosController extends AppController {
  * @return void
  */
 	public function index() {
+            
+                $this->Breadcrumb->add('Turnos/', '/Turnos/index/');
                 $this->Paginator->settings = $this->paginate;
             
 		$this->Turno->recursive = 0;
 		$this->set('turnos', $this->Paginator->paginate());
-                //$this->layout = 'atmosphere';
                 $this->set('title', 'Turnos');
 	}
 
@@ -50,18 +56,6 @@ class TurnosController extends AppController {
 		$options = array('conditions' => array('Turno.' . $this->Turno->primaryKey => $id));
 		$this->set('turno', $this->Turno->find('first', $options));
                 
-                /*Segun Tut de Blog
-                public function view($id = null) {
-                if (!$id) {
-                    throw new NotFoundException(__('Invalid post'));
-                }
-
-                $escuela = $this->Escuela->findById($id);
-                if (!$escuela) {
-                    throw new NotFoundException(__('Invalid escuela.'));
-                }
-                $this->set('escuela', $escuela);
-                }*/
                 
         }
 
@@ -71,6 +65,9 @@ class TurnosController extends AppController {
  * @return void
  */
 	public function add() {
+            
+                $this->Breadcrumb->add('Turnos/', '/Turnos/index/');
+                $this->Breadcrumb->add('Agregar/', '/Turnos/add/');
                 
                 $this->set('pacientes', $this->Turno->Paciente->find('list'));
             
@@ -83,7 +80,7 @@ class TurnosController extends AppController {
                     $this->Session->setFlash(__('El turno ha sido guardado.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('El turno no ha sido guardado. Intente nuevamente.'));
+                $this->Session->setFlash(__('El registro no ha sido guardado. Intente nuevamente.'));
                 }
     }
 /**
@@ -94,6 +91,9 @@ class TurnosController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+            
+            $this->Breadcrumb->add('Turnos/', '/Turnos/index/');
+            $this->Breadcrumb->add('Editar/', '/Turnos/edit/'. $id);
             
             $this->set('pacientes', $this->Turno->Paciente->find('list'));
             
@@ -112,7 +112,7 @@ class TurnosController extends AppController {
                     $this->Session->setFlash(__('El turno ha sido actualizado.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('El turno no ha sido guardado. Intente nuevamente.'));
+                $this->Session->setFlash(__('El registro no ha sido guardado. Intente nuevamente.'));
         }
 
             if (!$this->request->data) {
@@ -132,15 +132,19 @@ class TurnosController extends AppController {
                     throw new MethodNotAllowedException();
                 }
 
+                $turno = $this->Turno->findByIdTurno($id);
+                $paciente = $this->Turno->Paciente->findByIdPaciente($turno['Turno']['paciente_id']);
                 if ($this->Turno->delete($id)) {
                     $this->Session->setFlash(
-                    __('El turno '.$this->Turno->field('fecha_turno'). $this->Turno->field('hora_turno').' ha sido borrado.', h($id))
+                    __('El turno para '. $paciente['Paciente']['Nombre_Completo'] . ' / ' . $turno['Turno']['fecha_turno'] .' ha sido borrado.', h($id))
                 );
                 return $this->redirect(array('action' => 'index'));
                 }
 	}
         
         public function buscar($filtro = NULL){
+            
+            $this->Breadcrumb->add('Turnos/', '/Turnos/index/');
 
             if($this->request->data('Buscar.desde') != null and $this->request->data('Buscar.hasta') != null){
                 $desde = $this->request->data('Buscar.desde');
@@ -153,22 +157,26 @@ class TurnosController extends AppController {
                 $dia = date('Y-m-d');
                 $msj = 'para este día';
                 $options = array('conditions' => array('Turno.' . 'fecha_turno' => $dia));
+                $this->Breadcrumb->add('Hoy/', '/Turnos/buscar/1');
                 
             }else if ($filtro == '2'){
                 $sem = date('W');
                 $msj = 'para esta semana';
                 $options = array('conditions' => array('EXTRACT(WEEK FROM '. 'Turno.' . 'fecha_turno' .')' => $sem - 1));
+                $this->Breadcrumb->add('Semana/', '/Turnos/buscar/2');
                 
             }else if($filtro == '3'){
                 $msj = 'para este mes';
                 $mes = date('m');
                 $options = array('conditions' => array('EXTRACT(MONTH FROM '. 'Turno.' . 'fecha_turno' .')' => $mes));
+                $this->Breadcrumb->add('Mes/', '/Turnos/buscar/3');
 
             }else if($filtro == '4'){
                 $msj = 'para este año';
                 $año = date('Y');
                 $options = array('conditions' => array('EXTRACT(YEAR FROM '. 'Turno.' . 'fecha_turno' .')' => $año),
                                  'order' => array('EXTRACT(MONTH FROM '. 'Turno.' . 'fecha_turno'.')'));
+                $this->Breadcrumb->add('Año/', '/Turnos/buscar/4');
                 
             }else if($this->request->data('Buscar.fecha') != null){
                 $fecha = $this->request->data('Buscar.fecha');

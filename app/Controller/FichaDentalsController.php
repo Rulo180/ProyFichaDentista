@@ -9,26 +9,31 @@ App::uses('AppController', 'Controller');
  */
 class FichaDentalsController extends AppController {
         
-        var $helpers = array('Html', 'Form', 'Session');
+        var $helpers = array('Html', 'Form', 'Session', 'CakeBreadcrumbs.Breadcrumb');
 /**
  * Components
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'CakeBreadcrumbs.Breadcrumb');
         
         public $paginate = array(
         'limit' => 5,
         'order' => array('FichaDental.fecha_ficha' => 'desc')
             );
         
+        public function beforeFilter() {
+            parent::beforeFilter();
+            $this->Breadcrumb->add('Inicio/', '/Turnos');
+        }
 /**
  * index method
  *
  * @return void
  */
 	public function index() {  
-                
+            
+                $this->Breadcrumb->add('Fichas/', '/Fichas/index');
                 $this->Paginator->settings = $this->paginate;
                 
 		$this->FichaDental->recursive = 0;
@@ -43,6 +48,8 @@ class FichaDentalsController extends AppController {
  */
 	public function add() {
             
+                $this->Breadcrumb->add('Fichas/', '/Fichas/index');
+                $this->Breadcrumb->add('Agregar/', '/Fichas/add');
                 $this->set('pacientes', $this->FichaDental->Paciente->find('list'));
                 
                 if ($this->request->is('post')) {
@@ -51,7 +58,7 @@ class FichaDentalsController extends AppController {
                     $this->Session->setFlash(__('La ficha dental ha sido guardada.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('La ficha dental no ha sido guardada. Intente nuevamente.'));
+                $this->Session->setFlash(__('El registro no ha sido guardado. Intente nuevamente.'));
                 }
     }
 /**
@@ -62,6 +69,9 @@ class FichaDentalsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+            
+            $this->Breadcrumb->add('Fichas/', '/Fichas/index');
+            $this->Breadcrumb->add('Editar/', '/Fichas/edit/' . $id);
             
             $this->set('pacientes', $this->FichaDental->Paciente->find('list'));
             
@@ -80,7 +90,7 @@ class FichaDentalsController extends AppController {
                     $this->Session->setFlash(__('La ficha ha sido actualizada.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('La ficha no ha sido guardada. Intente nuevamente.'));
+                $this->Session->setFlash(__('El registro no ha sido guardado. Intente nuevamente.'));
         }
 
             if (!$this->request->data) {
@@ -99,14 +109,12 @@ class FichaDentalsController extends AppController {
 		if ($this->request->is('get')) {
                     throw new MethodNotAllowedException();
                 }
-                //No trae al Paciente correcto, solo trae al 1ero
-                $paciente_id = $this->FichaDental->field('paciente_id');
-                $this->loadModel('Paciente', $paciente_id);
-                $nombre = $this->Paciente->field('Nombre_Completo');
-                
+                $ficha = $this->FichaDental->findByIdFicha($id);
+                $paciente = $this->FichaDental->Paciente->findByIdPaciente($ficha['FichaDental']['paciente_id']);
+                                
                 if ($this->FichaDental->delete($id)) {
                     $this->Session->setFlash(
-                    __('La ficha de '. $nombre .' ha sido borrada.', h($id))
+                    __('La ficha de '. $paciente['Paciente']['Nombre_Completo'] .' ha sido borrada.', h($id))
                 );
                 return $this->redirect(array('action' => 'index'));
                 }

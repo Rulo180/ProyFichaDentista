@@ -83,6 +83,30 @@ a {
 	color: #92A9B6;
 }
 
+/*   Breadcrumbs  */
+
+#breadcrumbs{
+    width: auto;
+    height: 90px;
+    margin: 0 auto;
+    padding: 0;
+    float: right;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#breadcrumbs ul li{
+    float: left;
+    position: relative;
+    margin-right: 2px;
+    list-style: none;
+    
+}
+
+#breadcrumbs ul li a {
+    display: block;
+    text-decoration: none;
+}
+
 /* Logo */
 
 #logo {

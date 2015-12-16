@@ -42,6 +42,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                         <li><a href="/ProyFichaDentista/Turnos/buscar/1">Hoy</a></li>
                                         <li><a href="/ProyFichaDentista/Turnos/buscar/2">Semana</a></li>
                                         <li><a href="/ProyFichaDentista/Turnos/buscar/3">Mes</a></li>
+                                        <li><a href="/ProyFichaDentista/Turnos/buscar/4">Año</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="/ProyFichaDentista/FichaDentals">Fichas</a></li>
@@ -61,7 +62,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     <div id="content">
 
                             <?php echo $this->Session->flash(); ?>
-
+                        
+                        <div id="breadcrumbs"><?php echo $this->Breadcrumb->render(); ?> </div>
+                        
                             <?php echo $this->fetch('content'); ?>
                     </div>
                     <div id="footer">

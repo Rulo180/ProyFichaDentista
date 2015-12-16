@@ -9,25 +9,33 @@ App::uses('AppController', 'Controller');
  */
 class DientesController extends AppController {
         
-        var $helpers = array('Html', 'Form', 'Session');
+        var $helpers = array('Html', 'Form', 'Session', 'CakeBreadcrumbs.Breadcrumb');
 /**
  * Components
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'CakeBreadcrumbs.Breadcrumb');
         
         public $paginate = array(
         'limit' => 10,
         'order' => array('Diente.cod_diente' => 'asc')
             );
         
+        public function beforeFilter() {
+            parent::beforeFilter();
+            $this->Breadcrumb->add('Inicio/', '/Turnos');
+  }
+  
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
+            
+                $this->Breadcrumb->add('Parametros/');
+                $this->Breadcrumb->add('Dientes/', '/Dientes/index/');
             
                 $this->Paginator->settings = $this->paginate;
             
@@ -58,14 +66,18 @@ class DientesController extends AppController {
  * @return void
  */
 	public function add() {
-            
+                
+                $this->Breadcrumb->add('Parametros/');
+                $this->Breadcrumb->add('Dientes/', '/Dientes/index/');
+                $this->Breadcrumb->add('Agregar/', '/Dientes/add');
+                
                 if ($this->request->is('post')) {
                     $this->Diente->create();
                 if ($this->Diente->save($this->request->data)) {
-                    $this->Session->setFlash(__('El registro de diente ha sido guardado.'));
+                    $this->Session->setFlash(__('El registro ha sido guardado.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('El registro de diente no ha sido guardado. Intente nuevamente.'));
+                $this->Session->setFlash(__('El registro no ha sido guardado. Intente nuevamente.'));
                 }
     }
 /**
@@ -76,6 +88,10 @@ class DientesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+            
+            $this->Breadcrumb->add('Parametros/');
+            $this->Breadcrumb->add('Dientes/', '/Dientes/index/');
+            $this->Breadcrumb->add('Editar/', '/Dientes/edit/'. $id);
             
             if (!$id) {
                 throw new NotFoundException(__('Id inválido.'));
@@ -92,7 +108,7 @@ class DientesController extends AppController {
                     $this->Session->setFlash(__('El diente ha sido actualizado.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('El diente no ha sido guardado. Intente nuevamente.'));
+                $this->Session->setFlash(__('El registro no ha sido guardado. Intente nuevamente.'));
         }
 
             if (!$this->request->data) {
@@ -112,9 +128,10 @@ class DientesController extends AppController {
                     throw new MethodNotAllowedException();
                 }
 
+                $diente = $this->Diente->findByIdDiente($id);
                 if ($this->Diente->delete($id)) {
                     $this->Session->setFlash(
-                    __('El diente '.$this->Diente->field('cod_diente').' ha sido borrado.', h($id))
+                    __('El diente '.$diente['Diente']['cod_diente'].' ha sido borrado.', h($id))
                 );
                 return $this->redirect(array('action' => 'index'));
                 }

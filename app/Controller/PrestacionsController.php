@@ -9,19 +9,24 @@ App::uses('AppController', 'Controller');
  */
 class PrestacionsController extends AppController {
         
-        var $helpers = array('Html', 'Form', 'Session');
+        var $helpers = array('Html', 'Form', 'Session', 'CakeBreadcrumbs.Breadcrumb');
 /**
  * Components
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'CakeBreadcrumbs.Breadcrumb');
         
         public $paginate = array(
         'limit' => 10,
         'order' => array('Prestacion.nombre_prestacion' => 'asc')
             );
         
+        public function beforeFilter() {
+            parent::beforeFilter();
+            $this->Breadcrumb->add('Inicio/', '/Turnos');
+  }
+  
 /**
  * index method
  *
@@ -29,6 +34,8 @@ class PrestacionsController extends AppController {
  */
 	public function index() {
             
+                $this->Breadcrumb->add('Parametros/');
+                $this->Breadcrumb->add('Prestaciones/', '/Prestacions/index/');
                 $this->Paginator->settings = $this->paginate;
             
 		$this->Prestacion->recursive = 0;
@@ -49,20 +56,7 @@ class PrestacionsController extends AppController {
 		}
 		$options = array('conditions' => array('Prestacion.' . $this->Prestacion->primaryKey => $id));
 		$this->set('prestacion', $this->Prestacion->find('first', $options));
-                
-                /*Segun Tut de Blog
-                public function view($id = null) {
-                if (!$id) {
-                    throw new NotFoundException(__('Invalid post'));
-                }
-
-                $escuela = $this->Escuela->findById($id);
-                if (!$escuela) {
-                    throw new NotFoundException(__('Invalid escuela.'));
-                }
-                $this->set('escuela', $escuela);
-                }*/
-                
+                                
         }
 
 /**
@@ -71,6 +65,10 @@ class PrestacionsController extends AppController {
  * @return void
  */
 	public function add() {
+            
+                $this->Breadcrumb->add('Parametros/');
+                $this->Breadcrumb->add('Prestaciones/', '/Prestacions/index/');
+                $this->Breadcrumb->add('Agregar/', '/Prestacions/add/');
             
                 if ($this->request->is('post')) {
                     $this->Prestacion->create();
@@ -89,6 +87,10 @@ class PrestacionsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+            
+            $this->Breadcrumb->add('Parametros/');
+            $this->Breadcrumb->add('Prestaciones/', '/Prestacions/index/');
+            $this->Breadcrumb->add('Editar/', '/Prestacions/edit/'. $id);
             
             if (!$id) {
                 throw new NotFoundException(__('Id inválido.'));
@@ -124,10 +126,11 @@ class PrestacionsController extends AppController {
 		if ($this->request->is('get')) {
                     throw new MethodNotAllowedException();
                 }
-
+                $prestacion = $this->Prestacion->findByIdPrestacion($id);
+                
                 if ($this->Prestacion->delete($id)) {
                     $this->Session->setFlash(
-                    __('La prestación '.$this->Prestacion->field('nombre_prestacion').' ha sido borrada.', h($id))
+                    __('La prestación '. $prestacion['Prestacion']['nombre_prestacion'].' ha sido borrada.', h($id))
                 );
                 return $this->redirect(array('action' => 'index'));
                 }

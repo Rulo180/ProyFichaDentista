@@ -11,25 +11,33 @@ App::uses('AppController', 'Controller');
 
 class TratamientosController extends AppController {
         
-        var $helpers = array('Html', 'Form', 'Session');
+        var $helpers = array('Html', 'Form', 'Session', 'CakeBreadcrumbs.Breadcrumb');
 /**
  * Components
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'CakeBreadcrumbs.Breadcrumb');
         
         public $paginate = array(
         'limit' => 5,
         'order' => array('Tratamiento.fecha_trat' => 'asc')
             );
         
+        public function beforeFilter() {
+            parent::beforeFilter();
+            $this->Breadcrumb->add('Inicio/', '/Turnos');
+  }
+  
 /**
  * index method
  *
  * @return void
  */
 	public function index($id = null) {  
+            
+                $this->Breadcrumb->add('Fichas/', '/FichaDentals/index/');
+                $this->Breadcrumb->add('Tratamientos/', '/Tratamientos/index/' . $id);
             
                 $this->Paginator->settings = $this->paginate;
                 $this->Paginator->settings = array(
@@ -89,6 +97,10 @@ class TratamientosController extends AppController {
  
         public function add($id_ficha = null) {
                 
+                $this->Breadcrumb->add('Fichas/', '/FichaDentals/index/');
+                $this->Breadcrumb->add('Tratamientos/', '/Tratamientos/index/' . $id_ficha);
+                $this->Breadcrumb->add('Agregar/', '/Tratamientos/add/' . $id_ficha);
+                
                 $this->set('prestacions', $this->Tratamiento->Prestacion->find('list'));
                 $this->set('id_ficha', $id_ficha);
                 $this->set('obras', $this->Tratamiento->ObraSocial->find('list'));
@@ -124,6 +136,10 @@ class TratamientosController extends AppController {
  */
 	public function edit($id = null) {
             
+            $this->Breadcrumb->add('Fichas/', '/FichaDentals/index/');
+            $this->Breadcrumb->add('Tratamientos/', '/Tratamientos/index/' . $id);
+            $this->Breadcrumb->add('Editar/', '/Tratamientos/edit/' . $id);
+                
             $this->set('prestacions', $this->Tratamiento->Prestacion->find('list'));
             $this->set('fichas', $this->Tratamiento->FichaDental->find('list'));
             $this->set('obras', $this->Tratamiento->ObraSocial->find('list'));

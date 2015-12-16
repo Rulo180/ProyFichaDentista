@@ -9,19 +9,23 @@ App::uses('AppController', 'Controller');
  */
 class PacientesController extends AppController {
         
-        var $helpers = array('Html', 'Form', 'Session');
+        var $helpers = array('Html', 'Form', 'Session', 'CakeBreadcrumbs.Breadcrumb');
 /**
  * Components
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'CakeBreadcrumbs.Breadcrumb');
         
         public $paginate = array(
         'limit' => 5,
         'order' => array('Paciente.apellido_paciente' => 'asc', 'Paciente.nombre_paciente' => 'asc')
             );
         
+        public function beforeFilter() {
+            parent::beforeFilter();
+            $this->Breadcrumb->add('Inicio/', '/Turnos');
+  }
 /**
  * index method
  *
@@ -29,6 +33,7 @@ class PacientesController extends AppController {
  */
 	public function index() {  
             
+                $this->Breadcrumb->add('Pacientes/', '/Pacientes/index');
                 $this->Paginator->settings = $this->paginate;
                 
 		$this->Paciente->recursive = 0;
@@ -44,6 +49,9 @@ class PacientesController extends AppController {
  * @return void
  */
 	public function view($id) {
+                $this->Breadcrumb->add('Pacientes/', '/Pacientes/index');
+                $this->Breadcrumb->add('Ver/', '/Pacientes/view/'.$id);
+                
 		if (!$this->Paciente->exists($id)) {
 			throw new NotFoundException(__('Paciente inválido'));
 		}
@@ -70,7 +78,7 @@ class PacientesController extends AppController {
                     $this->Session->setFlash(__('El paciente ha sido guardado.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('El paciente no ha sido guardado. Intente nuevamente.'));
+                $this->Session->setFlash(__('El registro no ha sido guardado. Intente nuevamente.'));
                 }
     }
 /**
@@ -81,6 +89,9 @@ class PacientesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+            
+            $this->Breadcrumb->add('Pacientes/', '/Pacientes/index');
+            $this->Breadcrumb->add('Editar/', '/Pacientes/edit/'.$id);
             
             $this->set('obras', $this->Paciente->ObraSocial->find('list'));
             
@@ -99,7 +110,7 @@ class PacientesController extends AppController {
                     $this->Session->setFlash(__('El paciente ha sido actualizado.'));
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('El paciente no ha sido guardado. Intente nuevamente.'));
+                $this->Session->setFlash(__('El registro no ha sido guardado. Intente nuevamente.'));
         }
 
             if (!$this->request->data) {
@@ -118,10 +129,10 @@ class PacientesController extends AppController {
 		if ($this->request->is('get')) {
                     throw new MethodNotAllowedException();
                 }
-
+                $paciente = $this->Paciente->findByIdPaciente($id);
                 if ($this->Paciente->delete($id)) {
                     $this->Session->setFlash(
-                    __('El paciente '.$this->Paciente->field('nombre_paciente'). $this->Paciente->field('apellido_paciente').' ha sido borrado.', h($id))
+                    __('El paciente '.$paciente['Paciente']['Nombre_Completo'].' ha sido borrado.', h($id))
                 );
                 return $this->redirect(array('action' => 'index'));
                 }
