@@ -1,30 +1,28 @@
     var lastRow=0;
+    var trat0 = $("#trat0");    //Guardo una plantilla de la fila 0, en caso de que sea borrada en un futuro   
     
 $(document).ready(function () {
     
     //Asocia la función delete a cada botón, 
     //cuando renderiza la tabla por primera vez
-    $('.btn-delete').on('click', deleteRow);
+    $('.deleteButton').on('click', deleteRow);
     
     //Asocia la funcion para añadir una nueva fila al boton,
     //En este caso como es único, se asocia mediante id
     $('#addButton').on('click', addRow);
-  
+    
 });
 
 function deleteRow() {
-    var deleteButton = this;
-    var row = $(deleteButton).parents('tr');
-    
-    row.remove();
+    $(this).parents("tr").remove();
     lastRow--;
 }
 
 function addRow() {    
     
-    lastRow++;
-    $("#trat0").clone(true).attr('id', 'trat'+lastRow).insertBefore("tfoot");
-    $("#trat"+lastRow+" button").attr('class','botonBorrar');
+    lastRow++;      //Aumento la variable indice para las filas
+    $(trat0).clone(true).attr('id', 'trat'+lastRow).insertBefore("tfoot");      //clono la plantilla y la inserto en la table
+    $("#trat"+lastRow+" button").attr('class','deleteButton');
     $("#trat"+lastRow+" select:first").attr('name','data[Tratamiento]['+lastRow+'][fecha_trat][day]').attr('id','fecha_trat_day'+lastRow);
     $("#trat"+lastRow+" select:eq(1)").attr('name','data[Tratamiento]['+lastRow+'][fecha_trat][month]').attr('id','fecha_trat_month'+lastRow);
     $("#trat"+lastRow+" select:eq(2)").attr('name','data[Tratamiento]['+lastRow+'][fecha_trat][year]').attr('id','fecha_trat_year'+lastRow);
@@ -32,6 +30,8 @@ function addRow() {
     $("#trat"+lastRow+" select:eq(4)").attr('name','data[Tratamiento]['+lastRow+'][diente_id]').attr('id','diente_id'+lastRow);
     $("#trat"+lastRow+" select:eq(5)").attr('name','data[Tratamiento]['+lastRow+'][cara_id]').attr('id','cara_id'+lastRow);
     $("#trat"+lastRow+" select:eq(6)").attr('name','data[Tratamiento]['+lastRow+'][obra_id]').attr('id','obra_id'+lastRow);
+    
+    $('.deleteButton').on('click', deleteRow);      //Vuelvo a asignar el evento de eliminar a los nuevos botones
 
 //Solucion Diego
 

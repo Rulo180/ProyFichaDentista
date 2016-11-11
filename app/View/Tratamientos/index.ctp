@@ -12,9 +12,8 @@
         <li>
         <?php echo $this->Form->end('Buscar');?>
         </li>
-        <li><?php echo $this->Html->link('Agregar Múltiples Trat.', array('controller' => 'Tratamientos', 'action'=>'multiadd', $id_ficha, 3));?></li>
         <li><?php echo $this->Html->link('Agregar Tratamiento', array('controller' => 'Tratamientos', 'action'=>'add', $id_ficha));?></li>
-        
+        <li><?php echo $this->Html->link('Agregar individual', array('controller' => 'Tratamientos', 'action'=>'add_viejo', $id_ficha));?></li>
     </ul> 
 <?php $this->end(); ?>
 

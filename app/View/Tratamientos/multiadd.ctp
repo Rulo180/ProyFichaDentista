@@ -4,30 +4,37 @@
     <legend>Registrar Tratamiento:</legend>
     
     
-    <table id="tablaTrat">
-        <tr>
-            <td>Borrar</td>
-            <td>Fecha:</td>
-            <td>Prestación: </td>
-            <td>Diente:</td>
-            <td>Cara:</td>
-            <td>Obra Social:</td>
-        </tr>
-            <?php for($i = 0; $i < $cant; $i++){ ?>
+    <table id="tablaTrats">
+        <thead>
+            <tr>
+                <td>Borrar</td>
+                <td>Fecha:</td>
+                <td>Prestación: </td>
+                <td>Diente:</td>
+                <td>Cara:</td>
+                <td>Obra Social:</td>
+            </tr>
+        </thead>
+        <tbody>
+                <?php $i=0; ?>
+                <?php for($i = 0; $i < $cant; $i++){ ?>
 
-           <tr id="trat0">
-                <td><?php echo $this->Form->button('&nbsp;-&nbsp;',array('type'=>'button','title'=>'Borrar trat', 'class' => 'botonBorrar')); ?></td>
+            <tr id="trat0">
+                <td><?php echo $this->Form->button('&nbsp;-&nbsp;',array('type'=>'button','title'=>'Borrar trat', 'id' => 'deleteButton', 'class' => 'deleteButton')); ?></td>
                 <td><?php echo $this->Form->input('Tratamiento.'.$i.'.fecha_trat', array('dateFormat' => 'DMY', 'minYear' => date('Y') - 1, 'maxYear' => date('Y') + 1,'label' => 'Fecha:')); ?> </td>
                 <td><?php echo $this->Form->input('Tratamiento.'.$i.'.prestacion_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $prestacions)); ?> </td>
                 <td><?php echo $this->Form->input('Tratamiento.'.$i.'.diente_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $dientes)); ?> </td>
                 <td><?php echo $this->Form->input('Tratamiento.'.$i.'.cara_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $caras)); ?> </td>
                 <td><?php echo $this->Form->input('Tratamiento.'.$i.'.obra_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $obras)); ?> </td>
-           </tr>            
-        <?php } ?>
-            <tr id="trAdd"><td> <?php echo $this->Form->button('+',array('type'=>'button','title'=>'Agregar trat','class'=>'botonAgregar')); ?></td>
+            </tr>            
+            <?php } ?>
+        </tbody>
+        <tfoot>
+            <tr id="trAdd">
+                <td> <?php echo $this->Form->button('+',array('type'=>'button','title'=>'Agregar trat', 'id' => 'addButton','class'=>'addButton')); ?></td>
                 <td></td> <td></td> <td></td> <td></td> <td></td>
             </tr>
-           
+        </tfoot>           
     </table>
     
     
@@ -37,27 +44,6 @@
 <?php echo $this->Form->end('Guardar Todos'); ?>
 
 <?php echo $this->Html->script(array('jquery-1.11.2'));?>
+<?php echo $this->Html->script(array('funciones.js'));?>
 
 
-<script type='text/javascript'>
-
-$(document).ready(function () {
-    $(".botonBorrar").click(function(){
-        $(this).parents("tr").remove();
-    });
-
-    var lastRow=0;
-
-    $(".botonAgregar").click(function(){
-        lastRow++;
-        $("#trat0").clone(true).attr('id', 'trat'+lastRow).insertBefore("#trAdd");
-        $("#trat"+lastRow+" button").attr('class','botonBorrar');
-        $("#trat"+lastRow+" input:first").attr('name','data[Tratamiento]['+lastRow+'][fecha_trat]').attr('id','fecha_trat'+lastRow);
-        $("#trat"+lastRow+" input:eq(1)").attr('name','data[Tratamiento]['+lastRow+'][prestacion_id]').attr('id','prestacion_id'+lastRow);
-        $("#trat"+lastRow+" input:eq(2)").attr('name','data[Tratamiento]['+lastRow+'][diente_id]').attr('id','diente_id'+lastRow);
-        $("#trat"+lastRow+" input:eq(3)").attr('name','data[Tratamiento]['+lastRow+'][cara_id]').attr('id','cara_id'+lastRow);
-        $("#trat"+lastRow+" input:eq(4)").attr('name','data[Tratamiento]['+lastRow+'][obra_id]').attr('id','obra_id'+lastRow);
-    });
-
-});
-</script>

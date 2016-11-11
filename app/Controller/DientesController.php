@@ -74,7 +74,7 @@ class DientesController extends AppController {
                 if ($this->request->is('post')) {
                     $this->Diente->create();
                 if ($this->Diente->save($this->request->data)) {
-                    $this->Session->setFlash(__('El registro ha sido guardado.'));
+                    $this->Session->setFlash(__('El diente ha sido guardado.'));
                     return $this->redirect(array('action' => 'index'));
                 }
                 $this->Session->setFlash(__('El registro no ha sido guardado. Intente nuevamente.'));
