@@ -18,11 +18,11 @@
         <tbody>
             <tr id="trat0">
                 <td><?php echo $this->Form->button('&nbsp;-&nbsp;',array('type'=>'button','title'=>'Borrar tratamiento', 'class' => 'deleteButton')); ?></td>
-                <td><?php echo $this->Form->input('Tratamiento.0.fecha_trat', array('dateFormat' => 'DMY', 'minYear' => date('Y') - 1, 'maxYear' => date('Y') + 1,'label' => 'Fecha:')); ?> </td>
-                <td><?php echo $this->Form->input('Tratamiento.0.prestacion_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $prestacions)); ?> </td>
-                <td><?php echo $this->Form->input('Tratamiento.0.diente_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $dientes)); ?> </td>
-                <td><?php echo $this->Form->input('Tratamiento.0.cara_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $caras)); ?> </td>
-                <td><?php echo $this->Form->input('Tratamiento.0.obra_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $obras)); ?> </td>
+                <td><?php echo $this->Form->input('0.fecha_trat', array('dateFormat' => 'DMY', 'minYear' => date('Y') - 1, 'maxYear' => date('Y') + 1,'label' => 'Fecha:')); ?> </td>
+                <td><?php echo $this->Form->input('0.prestacion_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $prestacions)); ?> </td>
+                <td><?php echo $this->Form->input('0.diente_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $dientes)); ?> </td>
+                <td><?php echo $this->Form->input('0.cara_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $caras)); ?> </td>
+                <td><?php echo $this->Form->input('0.obra_id', array('label' => '', 'empty' => '(Seleccionar)','options' => $obras)); ?> </td>
             </tr>
         </tbody>
         <tfoot>

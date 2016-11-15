@@ -41,11 +41,7 @@ class ObraSocial extends AppModel {
             'order' => 'Paciente.nombre_paciente DESC',
             //'limit' => '5',
             'dependent' => false
-            ),
-        'Tratamiento' => array(
-            'className' => 'Tratamiento',
-            'foreignKey' => 'diente_id',
-            'dependent' => false)
+            )
         );
 /**
  * Validation rules
