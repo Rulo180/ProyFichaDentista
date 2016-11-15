@@ -26,9 +26,12 @@ class Diente extends AppModel {
   * Asociaciones
   * 
   */    
-
-        
-        
+        public $hasMany = array(
+        'Tratamiento' => array(
+            'className' => 'Tratamiento',
+            'foreignKey' => 'diente_id',
+            'dependent' => false)
+            );
 /**
  * Validation rules
  *

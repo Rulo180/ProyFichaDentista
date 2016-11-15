@@ -28,29 +28,27 @@ class Tratamiento extends AppModel {
   * 
   */            
         public $belongsTo = array(
-       
-            'FichaDental' => array(
-                'className' => 'FichaDental',
-                'foreignKey' => 'ficha_id'
-            ),
-            'ObraSocial' => array(
-                'className' => 'ObraSocial',
-                'foreignKey' => 'obra_id'
-            ),
-            'Prestacion' => array(
-                'className' => 'Prestacion',
-                'foreignKey' => 'prestacion_id'
-            ),
-            'Diente' => array(
-                'className' => 'Diente',
-                'foreignKey' => 'diente_id'
-            ),
-            'Cara' => array(
-                'className' => 'Cara',
-                'foreignKey' => 'cara_id'
-            ) 
-        );
-        
+        'ObraSocial' => array(
+            'className' => 'ObraSocial',
+            'foreignKey' => 'obra_id'
+        ),
+        'FichaDental' => array(
+            'className' => 'FichaDental',
+            'foreignKey' => 'ficha_id'
+        ),
+        'Prestacion' => array(
+            'className' => 'Prestacion',
+            'foreignKey' => 'prestacion_id'
+        ),
+        'Diente' => array(
+            'className' => 'Diente',
+            'foreignKey' => 'diente_id'
+        ),
+        'Cara' => array(
+            'className' => 'Cara',
+            'foreignKey' => 'cara_id'
+        )
+    );
         
         /*      ULTIMA OPCION ELEGIDA!!! 
         public $hasAndBelongsToMany = array(

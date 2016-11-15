@@ -26,9 +26,12 @@ class Cara extends AppModel {
   * Asociaciones
   * 
   */    
-
-        
-        
+        public $hasMany = array(
+        'Tratamiento' => array(
+            'className' => 'Tratamiento',
+            'foreignKey' => 'cara_id',
+            'dependent' => false)
+            );
 /**
  * Validation rules
  *

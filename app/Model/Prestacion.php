@@ -35,6 +35,12 @@ class Prestacion extends AppModel {
 //            )
 //        );
         
+        public $hasMany = array(
+        'Tratamiento' => array(
+            'className' => 'Tratamiento',
+            'foreignKey' => 'prestacion_id',
+            'dependent' => false)
+            );
         
 /**
  * Validation rules

@@ -92,15 +92,11 @@ class TratamientosController extends AppController {
                             $saves++;
                         }
                     }  
-                    
-                    //if($this->Tratamiento->saveMany($this->data['Tratamiento'])){
-                        
                     if($saves == $cant){
                         $this->Session->setFlash(__('Los tratamientos han sido guardados.'));
                         return $this->redirect(array('action' => 'index', $id_ficha)); 
                     }
-                    $this->Session->setFlash(__('Los tratamientos no han sido guardados. Intente nuevamente.'));
-                    $this->Session->setFlash(__('No guardo bien... cant: ' . $cant . ' - saves: ' . $saves));
+                    $this->Session->setFlash(__('Los tratamientos no han sido guardados. Intente nuevamente.'));      
                 }          
                 
         }
@@ -123,7 +119,7 @@ class TratamientosController extends AppController {
             $this->set('obras', $this->Tratamiento->ObraSocial->find('list'));
             $this->set('prestaciones', $this->Tratamiento->Prestacion->find('list'));
             $this->set('dientes', $this->Tratamiento->Diente->find('list'));
-            $this->set('caras', $this->Tratamiento->Cara->find('list'));
+                $this->set('caras', $this->Tratamiento->Cara->find('list'));
             
             if (!$id) {
                 throw new NotFoundException(__('Id inválido.'));
