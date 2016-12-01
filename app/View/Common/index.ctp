@@ -1,19 +1,15 @@
 <!-- app/View/Common/index.ctp-->
-<div id="column">
-    <h3><?php echo $this->fetch('tit_col'); ?></h3>
-    <ul>
-    <?php echo $this->fetch('column'); ?>
-    </ul>
+
+
+<h1><?php echo $this->fetch('title'); ?></h1>
+
+<div id="breadcrumbs">
+    <?php echo $this->Breadcrumb->render(); ?> 
 </div>
 
-<div id="view">
-    <h1><?php echo $this->fetch('title'); ?></h1>
-    <?php echo $this->fetch('content'); ?>
-</div>
+<?php echo $this->fetch('content'); ?>
 
 <div id="paginate">
     <?php echo $this->fetch('paginate'); ?>
 </div>
-
-
 

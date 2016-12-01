@@ -1,7 +1,6 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: url('../img/menu_bg.jpg') repeat-x left top;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	color: #3A4648;
@@ -17,14 +16,9 @@ a {
 	font-weight: bold;
 }
 
-                        /* --------  ESTILOS -------- */
-
-
-
-                        /* -------- CAPAS -------- */
 
 #container {
-	//width: 1200px;
+	width: 1500px;
         height: auto;
 	margin: 0px auto;
 }
@@ -49,27 +43,57 @@ a {
         width: 80%;
 }
 
+ 
+/** Column **/
+
+#column {
+        width: 200px;
+        height: auto;
+        background-color: #e32;
+        padding: 0;
+        float: left;
+        position: relative;
+        margin-right: 10px;
+        min-height: 500px;
+}
+
+#column ul{
+        width: 150px;
+        list-style-type: none;
+        padding-left: 20px;
+}
+
+#column li{
+        
+        margin-bottom: 10px;
+        
+        border: 1px solid;
+        border-color: #E6B800;
+}
+
 /* Header */
 
-#header {
+.header {
 	width: auto;
 	height: 115px;
 	margin: 0 auto;
 	padding: 0px 50px;
+        background: url('../img/menu_bg.jpg') repeat-x left top;
         
 }
 
 /* Footer */
 
-#footer {
+.footer {
 	height: 50px;
+        width: 100%;
 	margin: 0 auto;
 	padding: 0px 0 15px 0;
 	background: #4D596A;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-#footer p {
+.footer p {
 	margin: 0;
 	padding-top: 30px;
 	line-height: normal;
@@ -79,7 +103,7 @@ a {
 	color: #92A9B6;
 }
 
-#footer a {
+.footer a {
 	color: #92A9B6;
 }
 
@@ -151,9 +175,9 @@ a {
 	color: #000000;
 }
 
-/* Menu */
+/* NavBar */
 
-#menu {
+.menu {
 	width: auto;
 	height: 90px;
 	margin: 0 auto;
@@ -258,39 +282,6 @@ a {
   .desplegable ul li:last-child a { border: none; }
 
 
- 
-/** Column **/
-
-#column {
-        width: 200px;
-        height: auto;
-        background-color: #e32;
-        padding: 0;
-        float: left;
-        margin-right: 10px;
-        min-height: 400px;
-}
-
-#column ul{
-        width: 150px;
-        list-style-type: none;
-        padding-left: 20px;
-}
-
-#column li{
-        
-        margin-bottom: 10px;
-        
-        border: 1px solid;
-        border-color: #E6B800;
-}
-
-/** View **/
-
-#view {
-        float: left;
-        width: 80%;
-}
 
 /** Paginate **/
 

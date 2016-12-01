@@ -1,8 +1,8 @@
 <?php $this->extend('/Common/index'); ?>
 
+<?php $this->assign('tit_col', 'Opciones:'); ?>
 
 <?php $this->start('column') ;?>
-    <?php $this->assign('tit_col', 'Opciones:'); ?>
     <ul>    
         <li>
         <?php echo $this->Form->create('Paciente', array('action'=>'buscar'))  ?>

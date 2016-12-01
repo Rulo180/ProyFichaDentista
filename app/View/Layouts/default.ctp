@@ -29,51 +29,53 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 </head>
 <body>
 	<div id="frame">
-		<div id="header">
-		<div id="logo">
-			<h1><a href="#">Atmosphere</a></h1>
-                        
-		</div>
-		<div id="menu">
-                    <ul class="desplegable">
-				<li><a href="/ProyFichaDentista/Pacientes">Pacientes</a></li>
-                                <li><a href="/ProyFichaDentista/Turnos">Turnos</a>
-                                    <ul>
-                                        <li><a href="/ProyFichaDentista/Turnos/buscar/1">Hoy</a></li>
-                                        <li><a href="/ProyFichaDentista/Turnos/buscar/2">Semana</a></li>
-                                        <li><a href="/ProyFichaDentista/Turnos/buscar/3">Mes</a></li>
-                                        <li><a href="/ProyFichaDentista/Turnos/buscar/4">Año</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="/ProyFichaDentista/FichaDentals">Fichas</a></li>
-                                <li><a>Parámetros</a>
-                                    <ul>
-                                        <li><a href="/ProyFichaDentista/Prestacions">Prestaciones</a></li>
-                                        <li><a href="/ProyFichaDentista/ObraSocials">Obras</a></li>
-                                        <li><a href="/ProyFichaDentista/Dientes">Dientes</a></li>
-                                        <li><a href="/ProyFichaDentista/Caras">Caras</a></li>
-                                    </ul>
-                                </li>
-			</ul>
-		</div>
-                </div>
+		<header class="header">
+                    <div id="logo">
+                            <h1><a href="/ProyFichaDentista/">Atmosphere</a></h1>
+
+                    </div>
+                    <nav class="menu">
+                        <ul class="desplegable">
+                                    <li><a href="/ProyFichaDentista/Pacientes">Pacientes</a></li>
+                                    <li><a href="/ProyFichaDentista/Turnos">Turnos</a>
+                                        <ul>
+                                            <li><a href="/ProyFichaDentista/Turnos/buscar/1">Hoy</a></li>
+                                            <li><a href="/ProyFichaDentista/Turnos/buscar/2">Semana</a></li>
+                                            <li><a href="/ProyFichaDentista/Turnos/buscar/3">Mes</a></li>
+                                            <li><a href="/ProyFichaDentista/Turnos/buscar/4">Año</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/ProyFichaDentista/FichaDentals">Fichas</a></li>
+                                    <li><a>Parámetros</a>
+                                        <ul>
+                                            <li><a href="/ProyFichaDentista/Prestacions">Prestaciones</a></li>
+                                            <li><a href="/ProyFichaDentista/ObraSocials">Obras</a></li>
+                                            <li><a href="/ProyFichaDentista/Dientes">Dientes</a></li>
+                                            <li><a href="/ProyFichaDentista/Caras">Caras</a></li>
+                                        </ul>
+                                    </li>
+                            </ul>
+                    </nav>
+                </header>
 	<!-- end #header -->
-                <div id ="container">       
-                    <div id="content">
-
-                            <?php echo $this->Session->flash(); ?>
-                        
-                        <div id="breadcrumbs"><?php echo $this->Breadcrumb->render(); ?> </div>
-                        
-                            <?php echo $this->fetch('content'); ?>
+                <div id ="container">
+                    <div id="column">
+                        <h3>
+                            <?php echo $this->fetch('tit_col'); ?>
+                        </h3>
+                            <?php echo $this->fetch('column'); ?>
                     </div>
-                    <div id="footer">
-
-                            <p>
-                                    <?php echo $cakeVersion; ?>
-                            </p>
+                    <div id="content">
+                        <?php echo $this->Session->flash(); ?>
+                        
+                        <?php echo $this->fetch('content'); ?>
                     </div>
                 </div>
+                <footer class="footer">
+                            <p>
+                                <?php echo $cakeVersion; ?>
+                            </p>
+                </footer>
 	</div>
 	<?php 
         echo $this->element('sql_dump');
