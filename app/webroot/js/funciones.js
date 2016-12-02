@@ -36,20 +36,20 @@ function addRow() {
 //Solucion Diego
 
 //    //Obtiene el cuerpo de la tabla
-//    var $tbody = $('#myTable').find('tbody');
+//    var $tbody = $('#tablaTrats').find('tbody');
 //
 //    //Crea la nueva fila
-//    var newRow = '<tr><td>Soy una nueva Fila!!!</td><td><button id="myButton" class="btn btn-danger btn-delete" type="button">Quitar</button></td></tr>';
+//    var newRow = '<tr><td>Soy una nueva Fila!!!</td><td><button id="myButton" class=".deleteButton" type="button">Quitar</button></td></tr>';
 //
 //    //Agrega la nueva fila al cuerpo de la tabla
 //    $tbody.append(newRow);
 //
 //    //Quita los eventos de los botones eliminar, ya que los nuevos botones que se agreguen no estarán asociados
-//    $('.btn-delete').off();
+//    $('.deleteButton').off();
 //
 //    //Vuelve a asignar el evento de eliminar, así lo agrega a los 
 //    //nuevos botones
-//    $('.btn-delete').on('click', deleteRow);
+//    $('.deleteButton').on('click', deleteRow);
 
 
 }

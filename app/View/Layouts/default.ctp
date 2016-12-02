@@ -71,6 +71,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         <?php echo $this->fetch('content'); ?>
                     </div>
                 </div>
+        
                 <footer class="footer">
                             <p>
                                 <?php echo $cakeVersion; ?>

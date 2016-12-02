@@ -192,27 +192,27 @@ class TratamientosController extends AppController {
                
         }
     
-        //Add individual ---- OBSOLETO
-        	public function add_viejo($id_ficha = null) {
-                    
-                $this->Breadcrumb->add('Fichas/', '/FichaDentals/index/');
-                $this->Breadcrumb->add('Tratamientos/', '/Tratamientos/index/' . $id_ficha);
-                
-                $this->set('prestacions', $this->Tratamiento->Prestacion->find('list'));
-                $this->set('id_ficha', $id_ficha);
-                $this->set('obras', $this->Tratamiento->ObraSocial->find('list'));
-                $this->set('prestaciones', $this->Tratamiento->Prestacion->find('list'));
-                $this->set('dientes', $this->Tratamiento->Diente->find('list'));
-                $this->set('caras', $this->Tratamiento->Cara->find('list'));
-                
-                if ($this->request->is('post')) {
-                        $this->Tratamiento->create();
-                        if ($this->Tratamiento->save($this->request->data)){
-                            $this->Session->setFlash(__('El tratamiento ha sido guardado.'));
-                            return $this->redirect(array('action' => 'index', $id_ficha));
-                    }
-                $this->Session->setFlash(__('El tratamiento no ha sido guardado. Intente nuevamente.'));
-                }
-        }
+//        //Add individual ---- OBSOLETO
+//        	public function add_viejo($id_ficha = null) {
+//                    
+//                $this->Breadcrumb->add('Fichas/', '/FichaDentals/index/');
+//                $this->Breadcrumb->add('Tratamientos/', '/Tratamientos/index/' . $id_ficha);
+//                
+//                $this->set('prestacions', $this->Tratamiento->Prestacion->find('list'));
+//                $this->set('id_ficha', $id_ficha);
+//                $this->set('obras', $this->Tratamiento->ObraSocial->find('list'));
+//                $this->set('prestaciones', $this->Tratamiento->Prestacion->find('list'));
+//                $this->set('dientes', $this->Tratamiento->Diente->find('list'));
+//                $this->set('caras', $this->Tratamiento->Cara->find('list'));
+//                
+//                if ($this->request->is('post')) {
+//                        $this->Tratamiento->create();
+//                        if ($this->Tratamiento->save($this->request->data)){
+//                            $this->Session->setFlash(__('El tratamiento ha sido guardado.'));
+//                            return $this->redirect(array('action' => 'index', $id_ficha));
+//                    }
+//                $this->Session->setFlash(__('El tratamiento no ha sido guardado. Intente nuevamente.'));
+//                }
+//        }
 
 }

@@ -52,31 +52,13 @@ class Tratamiento extends AppModel {
         );
         
         
-        /*      ULTIMA OPCION ELEGIDA!!! 
-        public $hasAndBelongsToMany = array(
-        'Prestacion'    
-        'Prestacion' => array(
-            'className' => 'Prestacion',
-            'joinTable' => 'prestacion_tratamientos',
-            'foreignKey' => 'tratamiento_id',
-            'associationForeignKey' => 'prestacion_id',
-            'unique' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'finderQuery' => '',
-            'with' => ''
-            )
-    );*/
 /**
  * Validation rules
  *
  * @var array
  */
 	public $validate = array(
-		'fecha_tratamiento' => array(
+		'fecha_trat' => array(
 			'rule' => 'notEmpty',
 			'message' => 'El campo fecha no puede quedar vacio',
 			//'allowEmpty' => false,

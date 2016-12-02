@@ -13,7 +13,6 @@
         <?php echo $this->Form->end('Buscar');?>
         </li>
         <li><?php echo $this->Html->link('Agregar Tratamiento', array('controller' => 'Tratamientos', 'action'=>'add', $id_ficha));?></li>
-        <li><?php echo $this->Html->link('Agregar individual', array('controller' => 'Tratamientos', 'action'=>'add_viejo', $id_ficha));?></li>
     </ul> 
 <?php $this->end(); ?>
 

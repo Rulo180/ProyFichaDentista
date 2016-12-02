@@ -43,9 +43,9 @@ class Diente extends AppModel {
 			//'last' => false, // Stop validation after this rule
 			//'on' => 'create', // Limit validation to 'create' or 'update' operations
 		),
-                'nombre_diente' => array(
+                'tipo_diente' => array(
 			'rule' => 'notEmpty',
-			'message' => 'El campo nombre no puede quedar vacio',
+			'message' => 'El campo tipo no puede quedar vacio',
 			//'allowEmpty' => false,
 			'required' => true,
 			//'last' => false, // Stop validation after this rule
